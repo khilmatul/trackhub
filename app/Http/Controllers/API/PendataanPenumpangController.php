@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\DB;
 
 class PendataanPenumpangController extends Controller
 {
-    //
     public function get_angkutan()
     {
         $angkutan = DB::table('angkutans')
@@ -39,7 +38,6 @@ class PendataanPenumpangController extends Controller
 
         $p = Penumpang::where('nama', 'LIKE', '%' . $request->nama . '%')->where('tgl_lahir', 'LIKE', '%' . $request->tgl_lahir . '%')->get();
         if ($p) {
-
             return response()->json([
                 'pesan' => 'sukses',
                 'data' =>$p
@@ -52,8 +50,6 @@ class PendataanPenumpangController extends Controller
         }
     }
 
-
-
     public function riwayat_penumpang()
     {
         $pendataan = DB::table('pendataans')
@@ -63,11 +59,13 @@ class PendataanPenumpangController extends Controller
             ->select('penumpangs.*','angkutans.nama_angkutan', 'users.nama as nama_supir','pendataans.*')
             ->orderBy('pendataans.id', 'DESC')
             ->get();
+
         if ($pendataan) {
             return response()->json([
                 'pesan' => 'sukses',
                 'data' => $pendataan
             ]);
+
         } else {
             return response()->json([
                 'pesan' => 'gagal',
@@ -75,26 +73,22 @@ class PendataanPenumpangController extends Controller
             ]);
         }
     }
+    
     public function absen_penumpang(Request $request)
     {
         $p =  Penumpang::where('id', $request->id)->first();
-
-
         if ($p) {
-
-
-
             $pendataan = new Pendataan();
             $pendataan->waktu_pendataan = Carbon::now();
             $pendataan->penumpang_id = $p->id;
             $pendataan->angkutan_id = $request->angkutan_id;
             $pendataan->type_absen = 'Absen Penumpang';
             $pendataan->save();
-
             return response()->json([
                 'pesan' => 'sukses',
                 'data' => [$p]
             ]);
+
         } else {
             return response()->json([
                 'pesan' => 'gagal',
@@ -102,6 +96,7 @@ class PendataanPenumpangController extends Controller
             ]);
         }
     }
+
     public function scan_qr_penumpang(Request $request)
     {
         $p =  Penumpang::where('qrcode', $request->qrcode_penumpang)->first();
@@ -119,6 +114,7 @@ class PendataanPenumpangController extends Controller
                 'pesan' => 'sukses',
                 'data' => [$p]
             ]);
+
         } else {
             return response()->json([
                 'pesan' => 'gagal',

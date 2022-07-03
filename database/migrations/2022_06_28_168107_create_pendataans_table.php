@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePendataansTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('pendataans', function (Blueprint $table) {
@@ -21,11 +16,8 @@ class CreatePendataansTable extends Migration
             $table->bigInteger('angkutan_id')->unsigned()->nullable();
             $table->foreign('angkutan_id')->references('id')->on('angkutans')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('penumpang_id')->unsigned()->nullable();
-            $table->foreign('penumpang_id')->references('id')->on('penumpangs')->onDelete('cascade')->onUpdate('cascade');
-            
-            $table->timestamps();
-
-          
+            $table->foreign('penumpang_id')->references('id')->on('penumpangs')->onDelete('cascade')->onUpdate('cascade');           
+            $table->timestamps();        
         });
 
         DB::table('pendataans')->insert([
@@ -34,7 +26,6 @@ class CreatePendataansTable extends Migration
             'angkutan_id'=>1,
             'penumpang_id'=>1,
             'type_absen'=>'Scan QR'
-
         ]);
 
         DB::table('pendataans')->insert([
@@ -43,15 +34,9 @@ class CreatePendataansTable extends Migration
             'angkutan_id'=>2,
             'penumpang_id'=>2,
             'type_absen'=>'Absen Penumpang'
-
         ]);
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
     public function down()
     {
         Schema::dropIfExists('pendataans');

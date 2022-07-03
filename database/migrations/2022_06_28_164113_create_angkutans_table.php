@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAngkutansTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('angkutans', function (Blueprint $table) {
@@ -20,13 +15,12 @@ class CreateAngkutansTable extends Migration
             $table->string('nama_angkutan');
             $table->date('tanggal');
             $table->bigInteger('trayek_id')->unsigned()->nullable();
-            $table->foreign('trayek_id')->references('id')->on('trayeks')->onDelete('cascade')->onUpdate('cascade');
-           
+            $table->foreign('trayek_id')->references('id')->on('trayeks')->onDelete('cascade')->onUpdate('cascade');          
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-
             $table->timestamps();
         });
+
         DB::table('angkutans')->insert([
             'id'=>1,
             'nama_angkutan'=>'angkutan',
@@ -34,7 +28,6 @@ class CreateAngkutansTable extends Migration
             'trayek_id'=>1,
             'no_polisi'=>'B 12345',
             'tanggal'=>'2022-09-01',
-
         ]);
 
         DB::table('angkutans')->insert([
@@ -44,15 +37,9 @@ class CreateAngkutansTable extends Migration
             'trayek_id'=>2,
             'no_polisi'=>'B 54321',
             'tanggal'=>'2022-06-01',
-
         ]);
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('angkutans');

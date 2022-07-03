@@ -7,24 +7,10 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePenumpangsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('penumpangs', function (Blueprint $table) {
             $table->id();
-            // $table->string('kode')->nullable();
-            // $table->string('nama_lengkap');
-            // $table->date('tanggal_lahir');
-            // $table->longText('alamat');
-            // $table->bigInteger('no_telepon');
-            // $table->string('asal_sekolah');
-            // $table->string('qr_code');
-      
-
             $table->date('tgl_input_penumpang');
             $table->string('nama');
             $table->string('alamat');
@@ -59,11 +45,6 @@ class CreatePenumpangsTable extends Migration
     
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('penumpangs');

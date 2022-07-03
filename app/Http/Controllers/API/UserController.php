@@ -28,17 +28,11 @@ class UserController extends Controller
 
         $users = User::where('username', $request->nama)->first();
 
-        // $angkutan = Angkutan::where('user_id',$user->id)->first();
-
         $user = DB::table('angkutans')
             ->leftjoin('users', 'angkutans.user_id', 'users.id')
             ->select('users.*', 'angkutans.id as angkutan_id',)
             ->where('users.username', $request->nama)
             ->first();
-        // return $user;
-        // return $angkutan->id;
-        // $user->angkutan = $angkutan->id;
-
         if ($user) {
             if (password_verify($request->password, $user->password)) {
                 $users->update([
@@ -84,9 +78,6 @@ class UserController extends Controller
     public function ubah_profil(Request $request)
     {
         $users =  User::where('id', $request->id)->first();
-
-
-
         if ($users) {
             $users->update([
                 'nama' => $request->nama,

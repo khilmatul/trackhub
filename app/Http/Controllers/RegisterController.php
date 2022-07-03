@@ -17,20 +17,7 @@ class RegisterController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:50',
             'username' => 'required|max:32|unique:users',
-            // 'notlpn' => 'required|max:12|unique:users',
             'password' => 'required|min:8|max:50'
         ]);
-
-        
-
-        // $validatedData['password'] = bcrypt($validatedData['password']);
-        // $validatedData['profesi'] = 'penumpang';
-       
-        // User::create($validatedData);
-
-        // return redirect('/login');
-
-
-
     }
 }

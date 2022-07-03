@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTrayeksTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('trayeks', function (Blueprint $table) {
@@ -30,8 +25,6 @@ class CreateTrayeksTable extends Migration
             'lokasi_berangkat'=>'bwi',
             'lokasi_tiba'=>'srono',
             'via'=>'bus',
-          
-
         ]);
         
         DB::table('trayeks')->insert([
@@ -39,16 +32,10 @@ class CreateTrayeksTable extends Migration
             'nama_trayek'=>'trayek B',
             'lokasi_berangkat'=>'bwi',
             'lokasi_tiba'=>'srono',
-            'via'=>'bus',
-          
+            'via'=>'bus',         
         ]);
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('trayeks');
