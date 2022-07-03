@@ -18,7 +18,7 @@
                   Generate Data
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a href="{{ url('eksportexcel') }}" class="dropdown-item">CSV</a></li>
+                  <li><a href="{{ url('export_excel_penumpang') }}" class="dropdown-item">CSV</a></li>
                   <li><a href="{{ url('eksportpenumpang') }}" class="dropdown-item">PDF</a></li>
                 </ul>
               </div>
@@ -44,12 +44,12 @@
                         <tr>
                           <td>{{ $index + $data->firstItem() }}</td>
                           <td>{{ $row->kode }}</td>
-                          <td>{{ $row->nama_lengkap }}</td>
-                          <td>{{ $row->tanggal_lahir }}</td>
+                          <td>{{ $row->nama}}</td>
+                          <td>{{ $row->tgl_lahir }}</td>
                           <td>{{ $row->alamat }}</td>
-                          <td>0{{ $row->no_telepon }}</td>
+                          <td>0{{ $row->no_telp }}</td>
                           <td>{{ $row->asal_sekolah }}</td>
-                          <td>{{ $row->qr_code }}</td>
+                          <td>{{ $row->qrcode }}</td>
                           <td >
                             <div class="row m-1">
                               <div class="col-md-6">

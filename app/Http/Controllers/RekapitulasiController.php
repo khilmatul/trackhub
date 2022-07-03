@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PendataanExport;
+use App\Models\Pendataan;
 use App\Models\Rekapitulasi;
+use PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RekapitulasiController extends Controller
 {
@@ -15,12 +20,19 @@ class RekapitulasiController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $data = Rekapitulasi::where('nama_lengkap','Like', '%' .$request->search .'%')->paginate(5);
+            // $data = Pendataan::where('nama_lengkap','Like', '%' .$request->search .'%')->paginate(5);
+            $data = DB::table('pendataans')
+            ->leftjoin('penumpangs', 'pendataans.penumpang_id', '=', 'penumpangs.id')
+            ->where('nama','Like', '%' .$request->search .'%')->paginate(5);
         }
         else{
-            $data = Rekapitulasi::paginate(5);
+            // $data = Pendataan::paginate(5);
+            $data = DB::table('pendataans')
+            ->leftjoin('penumpangs', 'pendataans.penumpang_id', '=', 'penumpangs.id')
+            ->where('nama','Like', '%' .$request->search .'%')->paginate(5);
         }
-        return view('dashboard.rekapitulasi.rekapitulasi');
+        // return $data;
+        return view('dashboard.rekapitulasi.rekapitulasi',compact('data'));
     }
 
     /**
@@ -89,11 +101,85 @@ class RekapitulasiController extends Controller
         //
     }
 
-    public function eksportrekapitulasi(){
-        $data = Rekapitulasi::all();
+    public function eksportrekapitulasi(Request $request){
+        // $data = DB::table('pendataans')
+        // ->leftjoin('penumpangs', 'pendataans.penumpang_id', '=', 'penumpangs.id')
+        // ->get();
 
-        view()->share('data', $data);
-        $pdf = PDF::loadview('dashboard.rekapitulasi.pdf');
-        return $pdf->download('rekapitulasi.pdf');
-    }
+        // view()->share('data', $data);
+        // $pdf = PDF::loadview('dashboard.rekapitulasi.pdf');
+        // return $pdf->download('rekapitulasi.pdf');
+        if($request->cetak=='pdf'){
+        $tanggal_awal = date('Y-m-d', strtotime($request->tanggal_awal));
+        $tanggal_akhir = date('Y-m-d', strtotime($request->tanggal_akhir));
+        if($tanggal_awal == '1970-01-01' && $tanggal_akhir == '1970-01-01'){
+
+           
+      
+            // $data = Pendataan::paginate(5);
+            $data = DB::table('pendataans')
+            ->leftjoin('penumpangs', 'pendataans.penumpang_id', '=', 'penumpangs.id')
+            ->get();
+        
+        // return $data;
+          view()->share('data', $data);
+          $pdf = PDF::loadview('dashboard.rekapitulasi.pdf');
+
+        }
+        else{
+            // $data = Pendataan::paginate(5);
+            $data = DB::table('pendataans')
+            ->leftjoin('penumpangs', 'pendataans.penumpang_id', '=', 'penumpangs.id')
+            ->where('waktu_pendataan', '>=', $tanggal_awal)
+            ->where('waktu_pendataan', '<=', $tanggal_akhir)
+            ->get();
+            // return $data;
+            view()->share('data', $data);
+              $pdf = PDF::loadview('dashboard.rekapitulasi.pdf');
+        }
+          return $pdf->download('rekapitulasi.pdf');
+        return $pdf->stream();
+    }else{
+
+        $tanggal_awal = date('Y-m-d', strtotime($request->tanggal_awal));
+        $tanggal_akhir = date('Y-m-d', strtotime($request->tanggal_akhir));
+        if($tanggal_awal == '1970-01-01' && $tanggal_akhir == '1970-01-01'){
+
+           
+      
+            // $data = Pendataan::paginate(5);
+            $data = DB::table('pendataans')
+            ->leftjoin('penumpangs', 'pendataans.penumpang_id', '=', 'penumpangs.id')
+            ->leftjoin('angkutans','pendataans.angkutan_id','angkutans.id')
+            ->get();
+        
+        // return $data;
+        return Excel::download(new PendataanExport($data), 'rekapitulasi_pendataan.xlsx');
+
+        }
+        else{
+            // $data = Pendataan::paginate(5);
+            $data = DB::table('pendataans')
+            ->leftjoin('penumpangs', 'pendataans.penumpang_id', '=', 'penumpangs.id')
+            ->leftjoin('angkutans','pendataans.angkutan_id','angkutans.id')
+            ->where('waktu_pendataan', '>=', $tanggal_awal)
+            ->where('waktu_pendataan', '<=', $tanggal_akhir)
+            ->get();
+            // return $data;
+            return Excel::download(new PendataanExport($data), 'rekapitulasi_pendataan.xlsx');
+        }
+        
+    } 
+
+        }
+    
+    
+    // public function exportexcel(){
+    //     return Excel::download(new PendataanExport, 'rekapitulasi_pendataan.xlsx');
+    // }
+
+    
+    
+
+    
 }

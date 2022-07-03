@@ -29,14 +29,27 @@
                   </div>                        
           
                   <div class="mb-2">
-                    <label class="form-label" for="sopir">Sopir</label>
-                    <input type="text" name="sopir" class="form-control" value="{{ $model->sopir }}" required>
-                  </div>
-          
-                  <div class="mb-2">
                     <label class="form-label" for="trayek_id">Trayek</label>
-                    <input type="text" name="trayek_id" class="form-control" value="{{ $model->trayek_id }}"/>           
-                  </div>                
+                    <select name="trayek_id" id="trayek_id" class="form-control" required>
+  
+                      
+                      @foreach ($trayek as $trayeks)
+                        <option value ="{{ $trayeks->id }}" >{{ $trayeks->nama_trayek }}</option>
+                      @endforeach
+                    </select>
+                  </div>
+
+          
+               
+                   <div class="mb-2">
+                      <label class="form-label" for="sopir">Sopir</label>
+                      <select name="sopir" id="sopir" class="form-control" required>
+                       
+                        @foreach ($user as $item)
+                          <option value ="{{ $item->id }}">{{ $item->nama }}</option>
+                        @endforeach
+                      </select>   
+                   </div>        
                   <button class="btn btn-primary" type="submit">Simpan</button>
                 </form>
           </div>

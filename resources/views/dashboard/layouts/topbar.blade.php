@@ -8,24 +8,20 @@
             <li class="nav-item dropstart">
                 <a class="nav-link text-light ps-3 pe-1" href="#" id="navbarDropdown" role="button"
                     data-bs-toggle="dropdown">
-                    {{ auth()->user()->name }}
+                    {{ auth()->user()->nama }}
+                    
                     <!-- <img src="./images/user/user.png" alt="user" class="img-user"> -->
                 </a>
                 <div class="dropdown-menu mt-2 pt-0" aria-labelledby="navbarDropdown">
                     <div class="d-flex p-3 border-bottom mb-2">
                         <!-- <img src="./images/user/user.png" alt="user" class="img-user me-2"> -->
-                        <div class="d-block">
+                        <!-- <div class="d-block">
                             <p class="fw-bold m-0 lh-1">YourName</p>
                         </div>
-                    </div>
-                    <a class="dropdown-item" href="#">
-                        <i class="fa fa-user fa-lg me-3 text-gray-400" aria-hidden="true"></i>Profile
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        <i class="fa fa-gauge fa-lg me-3 text-gray-400" aria-hidden="true"></i>Dashboard
-                    </a>
+                    </div> -->
+                   
                     <hr class="dropdown-divider">
-                    <form action="/logout" method="POST">
+                    <form action="{{url('logout')}}" method="GET">
                         @csrf
                         <button type="submit" class="dropdown-item">
                             <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>

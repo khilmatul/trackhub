@@ -16,20 +16,7 @@
           <div class="card-body" >
               <form action="/penumpang" method="POST">
                   @csrf
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="mb-2">
-                        <label class="form-label" for="kode">Kode</label>
-                        <input type="text" id="kode" name="kode" class="form-control @error('kode')is-invalid @enderror" value="{{ 'PNP-'.date('d-m-y').'-'.$kd }}" readonly=""  required/>                        
-                        @error('kode')
-                        <div class="invalid-feedback">
-                          {{ $message}}
-                        </div>
-                        @enderror
-                      </div>
-                    </div>
-                  </div>
-
+                
                   <div class="row">                
                     <div class="col-6">
                       <div class="mb-2">
@@ -80,16 +67,12 @@
     
                   <div class="mb-2">
                     <label class="form-label" for="asal_sekolah">Asal Sekolah</label>
-                    <input type="text" id="asal_sekolah" name="asal_sekolah" class="form-control @error('asal_sekolah')is-invalid @enderror"
-                    value="{{ old('asal_sekolah') }}" required/>
-                    @error('asal_sekolah')
-                      <div class="invalid-feedback">
-                        {{ $message}}
-                      </div>
-                    @enderror                  
+                    <input type="text" id="asal_sekolah" name="asal_sekolah" class="form-control"
+                     required/>
+                           
                   </div>  
     
-                  <div class="mb-2">
+                  <!-- <div class="mb-2">
                     <label class="form-label" for="qr_code">QR Code</label>
                     <input type="text" id="qr_code" name="qr_code" class="form-control @error('qr_code')is-invalid @enderror"
                     value="{{ old('qr_code') }}" required/>
@@ -98,7 +81,7 @@
                         {{ $message}}
                       </div>
                     @enderror                  
-                  </div>             
+                  </div>              -->
           
                   <button class="btn btn-primary" type="submit">Simpan</button>
                   

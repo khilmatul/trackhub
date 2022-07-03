@@ -33,7 +33,7 @@
 <table id="penumpang">
   <tr>
     <th scope="col">No.</th>
-        <th scope="col">Kode</th>
+        <th scope="col">QR Code</th>
         <th scope="col">Nama Lengkap</th>
         <th scope="col">Tanggal Lahir</th>
         <th scope="col">Alamat</th>
@@ -46,11 +46,11 @@
   @foreach ($data as $row)
         <tr>
             <td>{{ $no++ }}</td>
-            <td>{{ $row->kode }}</td>
-            <td>{{ $row->nama_lengkap }}</td>
-            <td>{{ $row->tanggal_lahir }}</td>
+            <td>{{ $row->qrcode }}</td>
+            <td>{{ $row->nama}}</td>
+            <td>{{ $row->tgl_lahir }}</td>
             <td>{{ $row->alamat }}</td>
-            <td>0{{ $row->no_telepon }}</td>
+            <td>0{{ $row->no_telp }}</td>
             <td>{{ $row->asal_sekolah }}</td>
         </tr>                      
     @endforeach    

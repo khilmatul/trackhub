@@ -21,11 +21,16 @@ class RegisterController extends Controller
             'password' => 'required|min:8|max:50'
         ]);
 
-        $validatedData['password'] = Hash::make($validatedData['password']);
-       
-        User::create($validatedData);
+        
 
-        return redirect('/login');
+        // $validatedData['password'] = bcrypt($validatedData['password']);
+        // $validatedData['profesi'] = 'penumpang';
+       
+        // User::create($validatedData);
+
+        // return redirect('/login');
+
+
 
     }
 }

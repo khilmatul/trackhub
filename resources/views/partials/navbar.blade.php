@@ -8,30 +8,18 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">        
         <ul class="navbar-nav ms-auto">
               @auth
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    {{ auth()->user()->name }}
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                      <form action="/logout" method="POST">
-                        @csrf
-                        <button type="submit" class="dropdown-item">Logout</button>
-                      </form>                      
-                    </li>
-                  </ul>
-                </li>
+              <li class="nav-item">
+                  <a class="nav-link {{ Request::is('logout') ? 'active' : '' }}" href="{{url('logout')}}">Logout</a>
+                </li>     
               @else
                 <li class="nav-item">
-                  <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="/">Beranda</a>
+                  <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{url('/')}}">Beranda</a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                   <a class="nav-link {{ Request::is('register') ? 'active' : '' }}" href="/register">Daftar</a>
-                </li>
+                </li> -->
                 <li class="nav-item">
-                  <a class="nav-link {{ Request::is('login') ? 'active' : '' }}" href="/login">Masuk</a>
+                  <a class="nav-link {{ Request::is('login') ? 'active' : '' }}" href="{{url('login')}}">Masuk</a>
                 </li>              
               @endauth
           </ul>     

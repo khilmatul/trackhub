@@ -35,29 +35,38 @@
                       {{ $message}}
                     </div>
                     @enderror
-                  </div>                        
-          
+                  </div>                     
+                  
+                 
                   <div class="mb-2">
                     <label class="form-label" for="sopir">Sopir</label>
-                    <input type="text" id="sopir" name="sopir" class="form-control @error('sopir')is-invalid @enderror"
-                    value="{{ old('sopir') }}" required>
+                    <select name="sopir" id="sopir" class="form-control @error('sopir')is-invalid @enderror" required>
+                      <option value selected disabled="">Pilih Sopir</option>
+                      @foreach ($user as $item)
+                        <option value ="{{ $item->id }}">{{ $item->nama }}</option>
+                      @endforeach
+                    </select>
                     @error('sopir')
-                      <div class="invalid-feedback">
-                        {{ $message}}
-                      </div>
+                    <div class="invalid-feedback">
+                      {{ $message}}
+                    </div>
                     @enderror
                   </div>
-          
+                 
                   <div class="mb-2">
                     <label class="form-label" for="trayek_id">Trayek</label>
-                    <input type="text" id="trayek_id" name="trayek_id" class="form-control @error('trayek_id')is-invalid @enderror"
-                    value="{{ old('trayek_id') }}" required/>  
+                    <select name="trayek_id" id="trayek_id" class="form-control @error('trayek_id')is-invalid @enderror" required>
+                      <option value selected disabled="">Pilih Trayek</option>
+                      @foreach ($trayek as $trayeks)
+                        <option value="{{ $trayeks->id }}">{{ $trayeks->nama_trayek }}</option>
+                      @endforeach
+                    </select>
                     @error('trayek_id')
                       <div class="invalid-feedback">
                         {{ $message}}
                       </div>
-                    @enderror             
-                  </div>                
+                    @enderror
+
                   <button class="btn btn-primary" type="submit">Simpan</button>
                 </form>
           </div>

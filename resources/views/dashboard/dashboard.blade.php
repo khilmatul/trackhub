@@ -17,7 +17,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                     Data Tracking</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$tracking}}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fa-solid fa-car-side fa-2x text-gray-300"></i>
@@ -35,7 +35,7 @@
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Data Penumpang</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">100</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$penumpang}}</div>
                             </div>
                             <div class="col-auto">
                                 <i class="fa-solid fa-address-card fa-2x text-gray-300"></i>
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">100</div>
+                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$user}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -67,40 +67,63 @@
                 </div>
             </div>
         </div>              
-
-        <div class="row g-2">
-            <div class="col-xl-6 col-lg-6">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Data Penumpang</h6>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-area">
-                            <canvas id="myChartOne"></canvas>
-                        </div>
-                    </div>
+        <div class="row">
+        <div class="card mb-3 col-md-12">
+            <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-chart-bar mr-1"></i>
+                 Data Penumpang
+                </h3>
+                <div class="card-tools">
+                  <ul class="nav nav-pills ml-auto">
+                  
+                  
+                   
+                  </ul>
                 </div>
-            </div>
-            <div class="col-xl-6 col-lg-6">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div
-                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Data Angkutan</h6>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div class="chart-pie">
-                            <canvas id="myChartTwo"></canvas>
-                        </div>
-                    </div>
+            </div><!-- /.card-header -->
+            <div class="card-body mb-5">
+                <div class="tab-content p-0">
+                  <div class="chart tab-pane active" id=""
+                       style="height: 250px; width:100%;">
+                      <canvas id="grafik_penumpang" height="200" width="700"></canvas>
+                   </div>
+             
                 </div>
-            </div>
+            </div><!-- /.card-body -->
+        </div>
+        </div>
 
+        <div class="row">
+        <div class="card mb-3 col-md-12">
+            <div class="card-header">
+                <h3 class="card-title">
+                  <i class="fas fa-chart-bar mr-1"></i>
+                 Data Angkutan
+                </h3>
+                <div class="card-tools">
+                  <ul class="nav nav-pills ml-auto">
+                  
+                  
+                   
+                  </ul>
+                </div>
+            </div><!-- /.card-header -->
+            <div class="card-body mb-5">
+                <div class="tab-content p-0">
+                  <div class="chart tab-pane active" id=""
+                       style="height: 250px; width:100%;">
+                      <canvas id="grafik_angkutan" height="200" width="700"></canvas>
+                   </div>
+             
+                </div>
+            </div><!-- /.card-body -->
+        </div>
+        </div>
+  
             
         </div>
+        
     </div>
 
     <!-- Footer -->
@@ -116,3 +139,109 @@
 
 
 @endsection
+@section('js')
+<script src="{{asset('chart.js/Chart.min.js')}}"></script>
+
+<script>
+    var ctx = document.getElementById('grafik_penumpang').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels:  {!!json_encode($chart->labels_bulan)!!} ,
+            datasets: [
+                {
+                    label: {!! json_encode($chart->tahun_ini)!!},
+                    backgroundColor: {!! json_encode($chart->colours)!!} ,
+                    data:  {!! json_encode($chart->data_Penumpang_bulan)!!} ,
+                },
+            ]
+        },
+
+
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function(value) {if (value % 1 === 0) {return value;}}
+                    },
+                    scaleLabel: {
+                        display: false
+                    }
+                }]
+            },
+            legend: {
+                labels: {
+                    fontColor: '#122C4B',
+                    fontFamily: "'Muli', sans-serif",
+                    padding: 25,
+                    boxWidth: 25,
+                    fontSize: 14,
+                }
+            },
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 10,
+                    top: 0,
+                    bottom: 10,
+                }
+            }
+        }
+    });
+</script>
+
+<script>
+    var ctx = document.getElementById('grafik_angkutan').getContext('2d');
+    var chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels:  {!!json_encode($chart->labels_bulan)!!} ,
+            datasets: [
+                {
+                    label: {!! json_encode($chart->tahun_ini)!!},
+                    backgroundColor: {!! json_encode($chart->colours)!!} ,
+                    data:  {!! json_encode($chart->data_angkutan_bulan)!!} ,
+                },
+            ]
+        },
+
+
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        callback: function(value) {if (value % 1 === 0) {return value;}}
+                    },
+                    scaleLabel: {
+                        display: false
+                    }
+                }]
+            },
+            legend: {
+                labels: {
+                    fontColor: '#122C4B',
+                    fontFamily: "'Muli', sans-serif",
+                    padding: 25,
+                    boxWidth: 25,
+                    fontSize: 14,
+                }
+            },
+            layout: {
+                padding: {
+                    left: 10,
+                    right: 10,
+                    top: 0,
+                    bottom: 10,
+                }
+            }
+        }
+    });
+</script>
+
+
+
+
+
+@endsection	

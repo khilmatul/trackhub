@@ -4,90 +4,79 @@
 <div class="form-regis">
     <div class="container">
       <div class="row justify-content-center ">
-        <div class="col-md-7 col-lg-5 regis ">          
+        <div class="col-md-12 col-lg-5 regis ">          
           <div class="card">            
             <div class="card-body">
-              <h4 class="fw-bolder text-center">Pendaftaran Kartu Penumpang</h4>
+              <h4 class="fw-bolder text-center">Pendaftaran Kartu Penumpangs</h4>
               <hr>
-              <form action="/register" method="POST">
+              <form action="{{url('daftar_penumpang')}}" method="POST">
                 @csrf
-                <div class="mb-2">
-                  <label class="form-label">Nama Lengkap</label>
-                  <input type="input" name="name" class="form-control @error('name')is-invalid @enderror" placeholder="Masukkan Nama Lengkap" value="{{ old('name') }}" required/>
-                  @error('name')
-                  <div class="invalid-feedback">
-                    {{ $message}}
-                  </div>
-                  @enderror
-                </div>
+                <div class="row">                
+                    <div class="col-6">
+                      <div class="mb-2">
+                        <label class="form-label" for="nama_lengkap">Nama Lengkap</label>
+                        <input type="text" id="nama_lengkap" name="nama_lengkap" class="form-control @error('nama_lengkap')is-invalid @enderror" value="{{ old('nama_lengkap') }}" required/>                        
+                        @error('nama_lengkap')
+                        <div class="invalid-feedback">
+                          {{ $message}}
+                        </div>
+                        @enderror
+                      </div>
+                    </div>
 
-                <div class="mb-2">
-                  <label class="form-label">Nama Pengguna</label>
-                  <input type="input" name="username" class="form-control @error('username')is-invalid @enderror" placeholder="Masukkan nama pengguna" value="{{ old('username') }}" required/>
-                  @error('username')
-                  <div class="invalid-feedback">
-                    {{ $message}}
+                    <div class="col-6">
+                      <div class="mb-2">
+                        <label class="form-label" for="tanggal_lahir">Tanggal Lahir</label>
+                        <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control @error('tanggal_lahir')is-invalid @enderror" value="{{ old('tanggal_lahir') }}" required/>                        
+                        @error('tanggal_lahir')
+                        <div class="invalid-feedback">
+                          {{ $message}}
+                        </div>
+                        @enderror
+                      </div>
+                    </div>
+                  </div>            
+          
+                  <div class="mb-2">
+                    <label class="form-label" for="alamat">Alamat</label>
+                    <input type="text" id="alamat" name="alamat" class="form-control @error('alamat')is-invalid @enderror"
+                    value="{{ old('alamat') }}" required>
+                    @error('alamat')
+                      <div class="invalid-feedback">
+                        {{ $message}}
+                      </div>
+                    @enderror
                   </div>
-                  @enderror
-                </div>
-  
-                {{-- <div class="mb-2">
-                  <label class="form-label">Tanggal Lahir</label>
-                  <div class="input-group">
-                    <input class="form-control" name="tl" type="date" required/>
-                    @error('tl')
-                  <div class="invalid-feedback">
-                    {{ $message}}
-                  </div>
-                  @enderror
-                  </div>
-                </div>
-  
-                <div class="mb-2">
-                  <label class="form-label">Alamat</label>
-                  <textarea type="text-area" name="alamat" class="form-control @error('alamat')is-invalid @enderror" placeholder="Masukkan Alamat" value="{{ old('alamat') }}" required></textarea>
-                  @error('alamat')
-                  <div class="invalid-feedback">
-                    {{ $message}}
-                  </div>
-                  @enderror
-                </div> --}}
-  
-                {{-- <div class="mb-2">
-                  <label class="form-label">No. Telepon</label>
-                  <input type="input" name="notlp" class="form-control @error('notlp')is-invalid @enderror" placeholder="Masukkan No. Telepon" value="{{ old('notlp') }}" required/>
-                  @error('notlp')
-                  <div class="invalid-feedback">
-                    {{ $message}}
-                  </div>
-                  @enderror
-                </div> --}}
-  
-                {{-- <div class="mb-2">
-                  <label class="form-label">Asal Sekolah (Jika Pelajar)</label>
-                  <input type="input" name="sekolah" class="form-control @error('sekolah')is-invalid @enderror" placeholder="Masukkan Asal Sekolah" value="{{ old('sekolah') }}" required/>
-                  @error('sekolah')
-                  <div class="invalid-feedback">
-                    {{ $message}}
-                  </div>
-                  @enderror
-                </div> --}}
-
-                <div class="mb-2">
-                  <label class="form-label">Kata Sandi</label>
-                  <input type="password" name="password" class="form-control @error('password')is-invalid @enderror" placeholder="Masukkan kata sandi" required/>
-                  @error('password')
-                  <div class="invalid-feedback">
-                    {{ $message}}
-                  </div>
-                  @enderror
-                </div>
+          
+                  <div class="mb-2">
+                    <label class="form-label" for="no_telepon">No. Telp</label>
+                    <input type="text" id="no_telepon" name="no_telepon" class="form-control @error('no_telepon')is-invalid @enderror"
+                    value="{{ old('no_telepon') }}" required/>  
+                    @error('no_telepon')
+                      <div class="invalid-feedback">
+                        {{ $message}}
+                      </div>
+                    @enderror             
+                  </div>  
+    
+                  <div class="mb-2">
+                    <label class="form-label" for="asal_sekolah">Asal Sekolah</label>
+                    <input type="text" id="asal_sekolah" name="asal_sekolah" class="form-control @error('asal_sekolah')is-invalid @enderror"
+                    value="{{ old('asal_sekolah') }}" required/>
+                    @error('asal_sekolah')
+                      <div class="invalid-feedback">
+                        {{ $message}}
+                      </div>
+                    @enderror                  
+                  </div>  
+    
+          
   
                 <div class="col-md-12 d-grid gap-2">
                   <button class="btn" type="submit">Daftar</button>
                 </div>
               </form>
-              <small class="d-block text-center mt-3">Sudah Punya Akun? <a href="/login">Silahkan Login</a></small>
+              <small class="d-block text-center mt-3">Sudah Punya Akun? <a href="/">Silahkan Cetak Kartu Penumpang Anda</a></small>
             </div>
           </div>
         </div>

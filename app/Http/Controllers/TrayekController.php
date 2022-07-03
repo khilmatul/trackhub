@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Trayek;
 use Illuminate\Http\Request;
 Use Alert;
+use App\Exports\DataTrayekExport;
 use PDF;
 use DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TrayekController extends Controller
 {
@@ -136,4 +138,10 @@ class TrayekController extends Controller
         $pdf = PDF::loadview('dashboard.trayek.pdf');
         return $pdf->download('trayek.pdf');
     }
+
+    public function exportexcel(){
+        return Excel::download(new DataTrayekExport, 'trayek.xlsx');
+    }
+    
+    
 }

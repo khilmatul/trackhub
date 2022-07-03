@@ -18,7 +18,7 @@
                   Generate Data
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a href="{{ url('eksportexcel') }}" class="dropdown-item">CSV</a></li>
+                  <li><a href="{{ url('export_excel_trayek') }}" class="dropdown-item">CSV</a></li>
                   <li><a href="{{ url('eksporttrayek') }}" class="dropdown-item">PDF</a></li>
                 </ul>
               </div>
