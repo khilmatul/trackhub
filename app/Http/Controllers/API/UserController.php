@@ -26,25 +26,42 @@ class UserController extends Controller
     {
         $random = $this->getRandomString();
 
-        $users = User::where('username', $request->nama)->first();
+        $users = User::where('username', $request->nama)->whereIn('profesi',['supir','petugas_terminal'])->first();
+ 
+       
 
         // $angkutan = Angkutan::where('user_id',$user->id)->first();
 
-        $user = DB::table('angkutans')
-            ->leftjoin('users', 'angkutans.user_id', 'users.id')
-            ->select('users.*', 'angkutans.id as angkutan_id',)
-            ->where('users.username', $request->nama)
-            ->first();
+     
+            // return $user;
         // return $user;
         // return $angkutan->id;
         // $user->angkutan = $angkutan->id;
+        if($users->profesi=='supir'){
 
-        if ($user) {
-            if (password_verify($request->password, $user->password)) {
+            $user = DB::table('angkutans')
+            ->leftjoin('users', 'angkutans.user_id', 'users.id')
+            ->leftJoin('trayeks', 'angkutans.trayek_id', 'trayeks.id')
+            ->select( 'angkutans.id as angkutan_id','angkutans.*','trayeks.*','users.*')
+            ->where('users.id', $users->id)
+            ->first();
+
+        }else{
+            $user = DB::table('users')
+            ->select( 'users.*')
+            ->where('users.id', $users->id)
+            ->first();
+
+        }
+   
+
+        if ($users) {
+            if (password_verify($request->password, $users->password)) {
+               
                 $users->update([
-                    'api-token' => $random
+                    'api-token' => $random,
                 ]);
-
+        
                 return response()->json([
                     'pesan' => 'sukses',
                     'user' => $user
@@ -94,11 +111,22 @@ class UserController extends Controller
                 'notelp' => $request->notelp,
                 'username' => $request->username
             ]);
-            $user = DB::table('angkutans')
+            if($users->profesi=='supir'){
+
+                $user = DB::table('angkutans')
                 ->leftjoin('users', 'angkutans.user_id', 'users.id')
-                ->select('users.*', 'angkutans.id as angkutan_id',)
+                ->leftJoin('trayeks', 'angkutans.trayek_id', 'trayeks.id')
+                ->select( 'angkutans.id as angkutan_id','angkutans.*','trayeks.*','users.*')
                 ->where('users.id', $users->id)
                 ->first();
+    
+            }else{
+                $user = DB::table('users')
+                ->select( 'users.*')
+                ->where('users.id', $users->id)
+                ->first();
+    
+            }
             return response()->json([
                 'pesan' => 'sukses',
                 'user' => $user

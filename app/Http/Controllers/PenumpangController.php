@@ -22,7 +22,7 @@ class PenumpangController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $data = Penumpang::where('nama_lengkap','Like', '%' .$request->search .'%')->paginate(5);
+            $data = Penumpang::where('nama','Like', '%' .$request->search .'%')->paginate(5);
         }
         else{
             $data = Penumpang::paginate(5);

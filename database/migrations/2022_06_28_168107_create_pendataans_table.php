@@ -28,23 +28,23 @@ class CreatePendataansTable extends Migration
           
         });
 
-        DB::table('pendataans')->insert([
-            'id'=>1,
-            'waktu_pendataan'=>'2022-09-01',
-            'angkutan_id'=>1,
-            'penumpang_id'=>1,
-            'type_absen'=>'Scan QR'
+        // DB::table('pendataans')->insert([
+        //     'id'=>1,
+        //     'waktu_pendataan'=>'2022-09-01',
+        //     'angkutan_id'=>1,
+        //     'penumpang_id'=>1,
+        //     'type_absen'=>'Scan QR'
 
-        ]);
+        // ]);
 
-        DB::table('pendataans')->insert([
-            'id'=>2,
-            'waktu_pendataan'=>'2022-12-21',
-            'angkutan_id'=>2,
-            'penumpang_id'=>2,
-            'type_absen'=>'Absen Penumpang'
+        // DB::table('pendataans')->insert([
+        //     'id'=>2,
+        //     'waktu_pendataan'=>'2022-12-21',
+        //     'angkutan_id'=>2,
+        //     'penumpang_id'=>2,
+        //     'type_absen'=>'Absen Penumpang'
 
-        ]);
+        // ]);
     }
 
     /**
