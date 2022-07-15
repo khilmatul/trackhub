@@ -102,7 +102,6 @@ class PendataanPenumpangController extends Controller
         $p =  Penumpang::where('qrcode', $request->qrcode_penumpang)->first();
 
         if ($p) {
-
             $pendataan = new Pendataan();
             $pendataan->waktu_pendataan = Carbon::now();
             $pendataan->penumpang_id = $p->id;

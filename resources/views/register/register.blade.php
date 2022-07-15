@@ -76,7 +76,7 @@
                   <button class="btn" type="submit">Daftar</button>
                 </div>
               </form>
-              <small class="d-block text-center mt-3">Sudah Punya Akun? <a href="/">Silahkan Cetak Kartu Penumpang Anda</a></small>
+              <small class="d-block text-center mt-3">Sudah Punya Kartu? <a href="/">Silahkan Cetak Kartu Penumpang Anda</a></small>
             </div>
           </div>
         </div>

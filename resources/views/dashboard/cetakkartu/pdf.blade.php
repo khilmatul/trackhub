@@ -12,10 +12,10 @@
         table tr th {
             font-size: 10pt;
         }
-
     </style>
     <p style="text-align:center; font-size:16pt">
-        <b> Cetak Qrcode Kartu Penumpang</b>
+        <b> Kartu Penumpang Angkutan Kota </b> <br>
+        <b> Kabupaten Banyuwangi</b>
     </p>
     <p style="text-align:center; font-size:16pt">
         <b> Nama : {{$data->nama}}</b>
@@ -25,6 +25,9 @@
     </p>
     <p style="text-align:center; font-size:16pt">
         <b> Asal Sekolah  : {{$data->asal_sekolah}}</b>
+    </p>
+    <p style="text-align:center; font-size:16pt">
+        <b> Alamat  : {{$data->alamat}}</b>
     </p>
     <p style="text-align:center; font-size:16pt">
         <b> No. Telp : {{$data->no_telp}}</b>

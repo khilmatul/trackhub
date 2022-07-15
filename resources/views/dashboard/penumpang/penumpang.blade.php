@@ -29,7 +29,6 @@
                     <thead >
                         <tr>
                           <th scope="col">NO.</th>
-                          <th scope="col">Kode</th>
                           <th scope="col">Nama Lengkap</th>
                           <th scope="col">Tanggal Lahir</th>
                           <th scope="col">Alamat</th>
@@ -43,7 +42,6 @@
                         @foreach ($data as $index => $row)
                         <tr>
                           <td>{{ $index + $data->firstItem() }}</td>
-                          <td>{{ $row->kode }}</td>
                           <td>{{ $row->nama}}</td>
                           <td>{{ $row->tgl_lahir }}</td>
                           <td>{{ $row->alamat }}</td>

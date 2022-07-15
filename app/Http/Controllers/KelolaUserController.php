@@ -66,7 +66,6 @@ class KelolaUserController extends Controller
         if($request->password)
         {
              $request->validate( [
-           
                 'nama' => 'required',
                 'profesi' => 'required',
                 'alamat' => 'required',
