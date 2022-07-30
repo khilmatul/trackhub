@@ -7,27 +7,16 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateUsersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
-        // Schema::create('users', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('name');
-        //     $table->string('username')->unique();
-        //     $table->timestamp('username_verified_at')->nullable();
-        //     $table->string('password');
-        //     $table->rememberToken();
-        //     $table->timestamps();
-        // });
-
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('nama');
             $table->string('username');
+<<<<<<< HEAD
+=======
+            $table->timestamp('email_verified_at')->nullable();
+>>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
             $table->string('password');
             $table->string('profesi');
             $table->string('alamat')->nullable();
@@ -82,11 +71,6 @@ class CreateUsersTable extends Migration
 
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('users');

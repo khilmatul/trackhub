@@ -7,7 +7,7 @@
         <div class="col-md-12 col-lg-5 regis ">          
           <div class="card">            
             <div class="card-body">
-              <h4 class="fw-bolder text-center">Pendaftaran Kartu Penumpangs</h4>
+              <h4 class="fw-bolder text-center">Pendaftaran Kartu Penumpang</h4>
               <hr>
               <form action="{{url('daftar_penumpang')}}" method="POST">
                 @csrf
@@ -59,7 +59,7 @@
                     @enderror             
                   </div>  
                   <div class="mb-2">
-                    <label class="form-labels" >Asal Sekolah</label>
+                    <label class="form-label" >Asal Sekolah</label>
                     <input type="text" id="asal_sekolah" name="asal_sekolah" class="form-control"
                      >
                            
@@ -71,7 +71,7 @@
                   <button class="btn" type="submit">Daftar</button>
                 </div>
               </form>
-              <small class="d-block text-center mt-3">Sudah Punya Akun? <a href="/">Silahkan Cetak Kartu Penumpang Anda</a></small>
+              <small class="d-block text-center mt-3">Sudah Punya Kartu? <a href="/">Silahkan Cetak Kartu Penumpang Anda</a></small>
             </div>
           </div>
         </div>

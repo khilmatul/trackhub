@@ -14,11 +14,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AngkutanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
         if($request->has('search')){
@@ -36,11 +31,6 @@ class AngkutanController extends Controller
         return view('dashboard.angkutan.angkutan', compact ('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $trayek=DB::table('trayeks')->get();
@@ -48,12 +38,6 @@ class AngkutanController extends Controller
         return view('dashboard.angkutan.create', compact ('trayek','user'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -74,28 +58,19 @@ class AngkutanController extends Controller
         return redirect('angkutan')->withToastSuccess('Data Berhasil Di Simpan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Angkutan  $angkutan
-     * @return \Illuminate\Http\Response
-     */
     public function show(Angkutan $angkutan)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Angkutan  $angkutan
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $trayek=DB::table('trayeks')->get();
         $user = User::where('profesi','supir')->get();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
         $model = DB::table('angkutans')->leftjoin('trayeks', 'angkutans.trayek_id', '=', 'trayeks.id')
         ->leftjoin('users', 'angkutans.user_id', '=', 'users.id')
         ->select('users.*','trayeks.*','angkutans.*')
@@ -103,13 +78,6 @@ class AngkutanController extends Controller
         return view('dashboard.angkutan.edit', compact ('model','trayek','user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Angkutan  $angkutan
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         Angkutan::where('id',$id)->update([
@@ -118,16 +86,13 @@ class AngkutanController extends Controller
             'user_id' => $request->sopir,
             'trayek_id' => $request->trayek_id,
         ]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
         return redirect('angkutan')->withToastSuccess('Data Berhasil Di Ubah');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Angkutan  $angkutan
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $model = Angkutan::find($id);
@@ -136,13 +101,18 @@ class AngkutanController extends Controller
     }
 
     public function eksportangkutan(){
+<<<<<<< HEAD
         $data = DB::table('angkutans')->leftJoin('trayeks','angkutans.trayek_id','trayeks.id')
       ->leftJoin('users','angkutans.user_id','users.id')->get();
 
+=======
+        $data = Angkutan::all();
+>>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
         view()->share('data', $data);
         $pdf = PDF::loadview('dashboard.angkutan.pdf');
         return $pdf->download('angkutan.pdf');
     }
+    
     public function exportexcels(){
         return Excel::download(new DataAngkutanExport, 'angkutan.xlsx');
     }

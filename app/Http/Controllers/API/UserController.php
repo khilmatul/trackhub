@@ -30,6 +30,7 @@ class UserController extends Controller
  
        
 
+<<<<<<< HEAD
         // $angkutan = Angkutan::where('user_id',$user->id)->first();
 
      
@@ -58,6 +59,15 @@ class UserController extends Controller
         if ($users) {
             if (password_verify($request->password, $users->password)) {
                
+=======
+        $user = DB::table('angkutans')
+            ->leftjoin('users', 'angkutans.user_id', 'users.id')
+            ->select('users.*', 'angkutans.id as angkutan_id',)
+            ->where('users.username', $request->nama)
+            ->first();
+        if ($user) {
+            if (password_verify($request->password, $user->password)) {
+>>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
                 $users->update([
                     'api-token' => $random,
                 ]);
@@ -101,9 +111,6 @@ class UserController extends Controller
     public function ubah_profil(Request $request)
     {
         $users =  User::where('id', $request->id)->first();
-
-
-
         if ($users) {
             $users->update([
                 'nama' => $request->nama,
