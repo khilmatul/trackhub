@@ -13,10 +13,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('nama');
             $table->string('username');
-<<<<<<< HEAD
-=======
             $table->timestamp('email_verified_at')->nullable();
->>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
             $table->string('password');
             $table->string('profesi');
             $table->string('alamat')->nullable();

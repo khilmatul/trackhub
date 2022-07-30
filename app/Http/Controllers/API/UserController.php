@@ -30,36 +30,6 @@ class UserController extends Controller
  
        
 
-<<<<<<< HEAD
-        // $angkutan = Angkutan::where('user_id',$user->id)->first();
-
-     
-            // return $user;
-        // return $user;
-        // return $angkutan->id;
-        // $user->angkutan = $angkutan->id;
-        if($users->profesi=='supir'){
-
-            $user = DB::table('angkutans')
-            ->leftjoin('users', 'angkutans.user_id', 'users.id')
-            ->leftJoin('trayeks', 'angkutans.trayek_id', 'trayeks.id')
-            ->select( 'angkutans.id as angkutan_id','angkutans.*','trayeks.*','users.*')
-            ->where('users.id', $users->id)
-            ->first();
-
-        }else{
-            $user = DB::table('users')
-            ->select( 'users.*')
-            ->where('users.id', $users->id)
-            ->first();
-
-        }
-   
-
-        if ($users) {
-            if (password_verify($request->password, $users->password)) {
-               
-=======
         $user = DB::table('angkutans')
             ->leftjoin('users', 'angkutans.user_id', 'users.id')
             ->select('users.*', 'angkutans.id as angkutan_id',)
@@ -67,7 +37,6 @@ class UserController extends Controller
             ->first();
         if ($user) {
             if (password_verify($request->password, $user->password)) {
->>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
                 $users->update([
                     'api-token' => $random,
                 ]);

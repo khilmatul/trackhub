@@ -67,11 +67,8 @@ class AngkutanController extends Controller
     {
         $trayek=DB::table('trayeks')->get();
         $user = User::where('profesi','supir')->get();
-<<<<<<< HEAD
-
-=======
->>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
-        $model = DB::table('angkutans')->leftjoin('trayeks', 'angkutans.trayek_id', '=', 'trayeks.id')
+        $model = DB::table('angkutans')
+        ->leftjoin('trayeks', 'angkutans.trayek_id', '=', 'trayeks.id')
         ->leftjoin('users', 'angkutans.user_id', '=', 'users.id')
         ->select('users.*','trayeks.*','angkutans.*')
         ->where('angkutans.id',$id)->first();
@@ -86,10 +83,6 @@ class AngkutanController extends Controller
             'user_id' => $request->sopir,
             'trayek_id' => $request->trayek_id,
         ]);
-<<<<<<< HEAD
-
-=======
->>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
         return redirect('angkutan')->withToastSuccess('Data Berhasil Di Ubah');
     }
 
@@ -101,13 +94,7 @@ class AngkutanController extends Controller
     }
 
     public function eksportangkutan(){
-<<<<<<< HEAD
-        $data = DB::table('angkutans')->leftJoin('trayeks','angkutans.trayek_id','trayeks.id')
-      ->leftJoin('users','angkutans.user_id','users.id')->get();
-
-=======
         $data = Angkutan::all();
->>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
         view()->share('data', $data);
         $pdf = PDF::loadview('dashboard.angkutan.pdf');
         return $pdf->download('angkutan.pdf');

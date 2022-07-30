@@ -17,12 +17,7 @@ class UnduhKartuController extends Controller
         'tanggal_lahir' => 'required',
         'alamat' => 'required',
         'no_telepon' => 'required|min:11|max:12',
-<<<<<<< HEAD
-        // 'asal_sekolah' => 'required|',
-        // 'qr_code' => 'required|min:8|max:50'
-=======
         'asal_sekolah' => 'required|',
->>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
     ]);
     $model = new Penumpang;
     $model->nama = $request->nama_lengkap;

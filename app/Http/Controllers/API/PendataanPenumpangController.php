@@ -58,13 +58,7 @@ class PendataanPenumpangController extends Controller
         }
     }
 
-<<<<<<< HEAD
-
-
-    public function riwayat_penumpang($id)
-=======
     public function riwayat_penumpang()
->>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
     {
         $pendataan = DB::table('pendataans')
             ->leftJoin('penumpangs', 'pendataans.penumpang_id', 'penumpangs.id')
@@ -73,15 +67,7 @@ class PendataanPenumpangController extends Controller
             ->leftJoin('users as supir','angkutans.user_id', 'supir.id')
             ->select('penumpangs.*','angkutans.nama_angkutan', 'users.nama as nama_petugas','pendataans.*','supir.nama as nama_supir')
             ->orderBy('pendataans.id', 'DESC')
-<<<<<<< HEAD
-            ->where('users.id', $id)->get();
-
-            foreach ($pendataan as $key => $value) {
-                $pendataan[$key]->asal_sekolah = $value->asal_sekolah??'-';
-            }
-=======
             ->get();
->>>>>>> 19cad015b11d01aa4fd799b0d90ee59c0f67063a
 
         if ($pendataan) {
             return response()->json([
