@@ -19,14 +19,14 @@ class CreateTrayeksTable extends Migration
             $table->string('nama_trayek');
             $table->string('lokasi_berangkat');
             $table->string('lokasi_tiba');
-            $table->string('via');
+            $table->string('via')->nullable();
           
             $table->timestamps();
         });
 
         DB::table('trayeks')->insert([
             'id'=>1,
-            'nama_trayek'=>'trayek A',
+            'nama_trayek'=>'TRY-0001',
             'lokasi_berangkat'=>'bwi',
             'lokasi_tiba'=>'srono',
             'via'=>'bus',
@@ -36,7 +36,7 @@ class CreateTrayeksTable extends Migration
         
         DB::table('trayeks')->insert([
             'id'=>2,
-            'nama_trayek'=>'trayek B',
+            'nama_trayek'=>'TRY-0002',
             'lokasi_berangkat'=>'bwi',
             'lokasi_tiba'=>'srono',
             'via'=>'bus',

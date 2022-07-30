@@ -22,6 +22,8 @@ class CreatePendataansTable extends Migration
             $table->foreign('angkutan_id')->references('id')->on('angkutans')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('penumpang_id')->unsigned()->nullable();
             $table->foreign('penumpang_id')->references('id')->on('penumpangs')->onDelete('cascade')->onUpdate('cascade');
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             
             $table->timestamps();
 

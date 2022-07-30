@@ -35,19 +35,34 @@ class TrayekController extends Controller
      */
     public function create()
     {
-        $model = new Trayek;
-        $q = DB::table('trayeks')->select(DB::raw('MAX(RIGHT(nama_trayek,4)) as nama_trayek'));
-        $kd ="";
-        if($q->count()>0){
-            foreach($q->get() as $k){
-                $tmp = ((int)$k->nama_trayek)+1;
-                $kd = sprintf("%04s", $tmp);
-            }
-        }else{
-            $kd = "0001";
-        }
+       
 
-        return view('dashboard.trayek.create', compact ('model', 'kd'));
+        $id= 0001;
+        $q = DB::table('trayeks')->select('trayeks.nama_trayek')->orderBy('id','desc')->first();
+        $val = explode('-', $q->nama_trayek);
+      
+      
+       $hasil =$val[1]+$id;
+        $kd = '000'.$hasil;
+  
+  
+        
+        
+        // $model = new Trayek;
+        // $q = DB::table('trayeks')->select(DB::raw('MAX(RIGHT(nama_trayek,4)) as nama_trayek'));
+        // $kd ="";
+        // if($q->count()>0){
+        //     foreach($q->get() as $k){
+        //         $tmp = ((int)$k->nama_trayek)+1;
+        //         $kd = sprintf("%04s", $tmp);
+        //     }
+        // }else{
+        //     $kd = "0001";
+        // }
+    
+
+
+        return view('dashboard.trayek.create', compact ('kd'));
     }
 
     /**
@@ -69,7 +84,7 @@ class TrayekController extends Controller
             'nama_trayek' => 'required|max:20',
             'lokasi_berangkat' => 'required',
             'lokasi_tiba' => 'required',
-            'via' => 'required',
+            // 'via' => 'required',
         ]);
 
         return redirect('trayek')->withToastSuccess('Data Berhasil Di Simpan');

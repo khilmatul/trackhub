@@ -33,27 +33,27 @@
 <table id="penumpang">
   <tr>
     <th scope="col">No.</th>
-        <th scope="col">Kode QR</th>
-        <th scope="col">Nama Lengkap</th>
-        <th scope="col">Tanggal Lahir</th>
-        <th scope="col">Alamat</th>
-        <th scope="col">No. Telepon</th>
-        <th scope="col">Asal Sekolah</th>
+    <th scope="col">Tanggal Registrasi</th>
+    <th scope="col">Nama Lengkap</th>
+    <th scope="col">Tanggal Lahir</th>
+    <th scope="col">Alamat</th>
+    <th scope="col">No. Telepon</th>
+    <th scope="col">Asal Sekolah</th>
   </tr>
   @php
       $no = 1;
   @endphp
   @foreach ($data as $row)
-        <tr>
-            <td>{{ $no++ }}</td>
-            <td>{{ $row->qrcode }}</td>
-            <td>{{ $row->nama }}</td>
-            <td>{{ $row->tgl_lahir }}</td>
-            <td>{{ $row->alamat }}</td>
-            <td>0{{ $row->no_telp }}</td>
-            <td>{{ $row->asal_sekolah }}</td>
-        </tr>                      
-    @endforeach    
+    <tr>
+      <td>{{ $no++ }}</td>
+      <td>{{$row->tgl_input_penumpang}}</td>
+      <td>{{ $row->nama }}</td>
+      <td>{{ $row->tgl_lahir }}</td>
+      <td>{{ $row->alamat }}</td>
+      <td>{{ $row->no_telp }}</td>
+      <td>{{ $row->asal_sekolah }}</td>
+    </tr>                      
+  @endforeach    
 </table>
 
 </body>

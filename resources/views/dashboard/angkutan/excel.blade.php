@@ -2,7 +2,7 @@
 <html lang="en">
 
 <body>
-    Judul 
+    Data Angkutan 
     <table class='table table-bordered'>
         <thead>
             <tr>
@@ -10,10 +10,7 @@
                 <th><b>Nama Angkutan</b></th>
                 <th><b>No Polisi</b></th>
                 <th><b>Nama Supir</b></th>
-                <th><b>Nama Trayek</b></th>
-                
-
-  
+                <th><b>Nama Trayek</b></th>  
             </tr>
         </thead>
         <tbody>
@@ -24,8 +21,7 @@
                 <td>{{$data->nama_angkutan}}</td>
                 <td>{{$data->no_polisi}}</td>
                 <td>{{$data->nama}}</td>
-                <td>{{$data->nama_trayek}}</td>
-               
+                <td>{{$data->nama_trayek}}</td>               
             </tr>
             @endforeach
         </tbody>

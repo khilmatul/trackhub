@@ -126,12 +126,11 @@
 <div class="container">
   <footer class="py-3 my-3">
 
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+    <!-- <ul class="nav justify-content-center border-bottom pb-3 mb-3">
       <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Belum Terdaftar ?</a></li>
       <li class="nav-item"><a href="{{url('register')}}" class="nav-link px-2 text-muted">Daftar Kartu</a></li>
-      <!-- <li class="nav-item"><a href="/beranda" class="nav-link px-2 text-muted">Unduh Kartu</a></li>
-      <li class="nav-item"><a href="/login" class="nav-link px-2 text-muted">Masuk</a></li> -->
-    </ul>
+   
+    </ul> -->
     <p class="text-center text-muted">&copy; 2022 Layanan Angkutan Perkotaan Kabupaten Banyuwangi</p>
   </footer>
 </div>

@@ -14,7 +14,7 @@
       <div class="col-md-8">
         <div class="card justify-content-center">
           <div class="card-body" >
-              <form action="/angkutan" method="POST">
+              <form action="{{url('angkutan')}}" method="POST">
                   @csrf
 
                   <div class="mb-2">
@@ -37,7 +37,6 @@
                     @enderror
                   </div>                     
                   
-                 
                   <div class="mb-2">
                     <label class="form-label" for="sopir">Sopir</label>
                     <select name="sopir" id="sopir" class="form-control @error('sopir')is-invalid @enderror" required>
@@ -66,7 +65,7 @@
                         {{ $message}}
                       </div>
                     @enderror
-
+                  </div>
                   <button class="btn btn-primary" type="submit">Simpan</button>
                 </form>
           </div>

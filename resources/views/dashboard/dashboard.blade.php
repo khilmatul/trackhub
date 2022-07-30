@@ -70,10 +70,10 @@
         <div class="row">
         <div class="card mb-3 col-md-12">
             <div class="card-header">
-                <h3 class="card-title">
-                  <i class="fas fa-chart-bar mr-1"></i>
+                <h5 class="card-title text-gray-700">
+                  <i class="fas fa-chart-bar mr-1 "></i>
                  Data Penumpang
-                </h3>
+                </h5>
                 <div class="card-tools">
                   <ul class="nav nav-pills ml-auto">
                   
@@ -97,10 +97,10 @@
         <div class="row">
         <div class="card mb-3 col-md-12">
             <div class="card-header">
-                <h3 class="card-title">
+                <h5 class="card-title text-gray-700">
                   <i class="fas fa-chart-bar mr-1"></i>
                  Data Angkutan
-                </h3>
+                </h5>
                 <div class="card-tools">
                   <ul class="nav nav-pills ml-auto">
                   

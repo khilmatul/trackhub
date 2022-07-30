@@ -58,16 +58,11 @@
                       </div>
                     @enderror             
                   </div>  
-    
                   <div class="mb-2">
-                    <label class="form-label" for="asal_sekolah">Asal Sekolah</label>
-                    <input type="text" id="asal_sekolah" name="asal_sekolah" class="form-control @error('asal_sekolah')is-invalid @enderror"
-                    value="{{ old('asal_sekolah') }}" required/>
-                    @error('asal_sekolah')
-                      <div class="invalid-feedback">
-                        {{ $message}}
-                      </div>
-                    @enderror                  
+                    <label class="form-labels" >Asal Sekolah</label>
+                    <input type="text" id="asal_sekolah" name="asal_sekolah" class="form-control"
+                     >
+                           
                   </div>  
     
           

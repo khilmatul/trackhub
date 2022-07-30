@@ -35,7 +35,7 @@
     
                   <div class="mb-2">
                     <label class="form-label" for="via">Via</label>
-                    <input type="text" name="via" class="form-control" value="{{ $model->via }}" required/>        
+                    <input type="text" name="via" class="form-control" value="{{ $model->via }}"/>        
                   </div>               
                   <button class="btn btn-primary" type="submit">Simpan</button>
                 </form>

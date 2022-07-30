@@ -15,7 +15,8 @@
 
     </style>
     <p style="text-align:center; font-size:16pt">
-        <b> Cetak Qrcode Kartu Penumpang</b>
+        <b>Kartu Penumpang</b> <br>
+        <b>Angkutan Perkotaan Kabupaten Banyuwangi</b>
     </p>
     <p style="text-align:center; font-size:16pt">
         <b> Nama : {{$data->nama}}</b>
@@ -24,10 +25,13 @@
         <b> Tanggal Lahir : {{$data->tgl_lahir}}</b>
     </p>
     <p style="text-align:center; font-size:16pt">
-        <b> Asal Sekolah  : {{$data->asal_sekolah}}</b>
+        <b> Alamat : {{$data->alamat}}</b>
     </p>
     <p style="text-align:center; font-size:16pt">
         <b> No. Telp : {{$data->no_telp}}</b>
+    </p>
+    <p style="text-align:center; font-size:16pt">
+        <b> Asal Sekolah  : {{$data->asal_sekolah}}</b>
     </p>
     <br>
     <br>

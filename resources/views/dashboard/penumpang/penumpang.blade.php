@@ -12,7 +12,7 @@
                 <input class="form-control form-control-sm me-1" type="search" name="search" placeholder="Cari" aria-label="Search">
                 <button class="btn btn-warning btn-sm" type="submit">Cari</button>
               </form>
-              <a href="{{ url('penumpang/create') }}" class="btn btn-primary btn-sm"><i class="bi bi-plus"></i>Tambah Data</a>
+              <!-- <a href="{{ url('penumpang/create') }}" class="btn btn-primary btn-sm"><i class="bi bi-plus"></i>Tambah Data</a> -->
               <div class="dropdown">
                 <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   Generate Data
@@ -26,47 +26,48 @@
 
             <div class="card-body">
                 <table class="table table-bordered table-striped table-hover">
-                    <thead >
-                        <tr>
-                          <th scope="col">NO.</th>
-                          <th scope="col">Kode</th>
-                          <th scope="col">Nama Lengkap</th>
-                          <th scope="col">Tanggal Lahir</th>
-                          <th scope="col">Alamat</th>
-                          <th scope="col">No. Telepon</th>
-                          <th scope="col">Asal Sekolah (Pelajar)</th>
-                          <th scope="col">QR Code</th>
-                          <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                        @foreach ($data as $index => $row)
-                        <tr>
-                          <td>{{ $index + $data->firstItem() }}</td>
-                          <td>{{ $row->kode }}</td>
-                          <td>{{ $row->nama}}</td>
-                          <td>{{ $row->tgl_lahir }}</td>
-                          <td>{{ $row->alamat }}</td>
-                          <td>0{{ $row->no_telp }}</td>
-                          <td>{{ $row->asal_sekolah }}</td>
-                          <td>{{ $row->qrcode }}</td>
-                          <td >
-                            <div class="row m-1">
-                              <div class="col-md-6">
-                                <a href="{{ url('penumpang/'.$row->id.'/edit') }}" class="btn btn-secondary btn-sm border-0"><i class="fa-solid fa-pen-to-square"></i></a>                                                     
-                              </div>
-                              <div class="col-md-6">
-                                <form action="{{ url('penumpang/'.$row->id) }}" method="post">
-                                  @csrf
-                                  <input type="hidden" name="_method" value="delete">
-                                  <button class="btn btn-danger btn-sm border-0 delete" data-id="{{ $row->id }}" data-name="{{ $row->nama_lengkap }}"><i class="fa-solid fa-trash-can"></i></button>
-                                </form> 
-                              </div>
+                  <thead >
+                    <tr>
+                      <th scope="col">No.</th>
+                      <th scope="col">Tgl Registrasi</th>
+                      <th scope="col">Nama Lengkap</th>
+                      <th scope="col">Tgl Lahir</th>
+                      <th scope="col">Alamat</th>
+                      <th scope="col">No.Telp</th>
+                      <th scope="col">Asal Sekolah (Pelajar)</th>
+                      <th scope="col">QR Code</th>
+                      <th scope="col">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-group-divider">
+                      @foreach ($data as $index => $row)
+                      <tr>
+                        <td>{{ $index + $data->firstItem() }}</td>
+                        {{-- <td>{{date('d-m-Y', strtotime($row->created_at))}}</td> --}}
+                        <td>{{ $row->tgl_input_penumpang}}</td>
+                        <td>{{ $row->nama}}</td>
+                        <td>{{ $row->tgl_lahir }}</td>
+                        <td>{{ $row->alamat }}</td>
+                        <td>0{{ $row->no_telp }}</td>
+                        <td>{{ $row->asal_sekolah }}</td>
+                        <td>{{ $row->qrcode }}</td>
+                        <td >
+                          <div class="row m-1">
+                            <div class="col-md-6">
+                              <a href="{{ url('penumpang/'.$row->id.'/edit') }}" class="btn btn-secondary btn-sm border-0"><i class="fa-solid fa-pen-to-square"></i></a>                                                     
                             </div>
-                          </td>
-                        </tr>                      
-                      @endforeach 
-                    </tbody>
+                            <div class="col-md-6">
+                              <form action="{{ url('penumpang/'.$row->id) }}" method="post">
+                                @csrf
+                                <input type="hidden" name="_method" value="delete">
+                                <button class="btn btn-danger btn-sm border-0 delete" data-id="{{ $row->id }}" data-name="{{ $row->nama_lengkap }}"><i class="fa-solid fa-trash-can"></i></button>
+                              </form> 
+                            </div>
+                          </div>
+                        </td>
+                      </tr>                      
+                    @endforeach 
+                  </tbody>
                   </table>
                   <div class="d-grid gap-2 d-md-flex justify-content-md-start">
                     {{ $data->links() }}

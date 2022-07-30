@@ -27,34 +27,39 @@
 </style>
 </head>
 <body>
-
+  <div class="container">
 <h1>Rekapitulasi Penumpang</h1>
-
 <table id="penumpang">
   <tr>
     <th scope="col">No.</th>
-        <th scope="col">QR Code</th>
-        <th scope="col">Nama Lengkap</th>
-        <th scope="col">Tanggal Lahir</th>
-        <th scope="col">Alamat</th>
-        <th scope="col">No. Telepon</th>
-        <th scope="col">Asal Sekolah</th>
+    <th scope="col">Tanggal Absen</th>
+    <th scope="col">Jam Absen</th>
+    <th scope="col">Nama Lengkap</th>
+    <th scope="col">Tanggal Lahir</th>
+    <th scope="col">Alamat</th>
+    <th scope="col">No.Telp</th>
+    <th scope="col">Asal Sekolah (Pelajar)</th>
+    <th scope="col">Sopir</th>
+    <th scope="col">Angkutan</th>
   </tr>
   @php
       $no = 1;
   @endphp
   @foreach ($data as $row)
-        <tr>
-            <td>{{ $no++ }}</td>
-            <td>{{ $row->qrcode }}</td>
-            <td>{{ $row->nama}}</td>
-            <td>{{ $row->tgl_lahir }}</td>
-            <td>{{ $row->alamat }}</td>
-            <td>0{{ $row->no_telp }}</td>
-            <td>{{ $row->asal_sekolah }}</td>
-        </tr>                      
-    @endforeach    
+    <tr>
+      <td>{{ $no++ }}</td>
+      <td>{{date('d-m-Y', strtotime($row->created_at))}}</td>
+      <td>{{date('H:i', strtotime($row->created_at))}}</td>
+      <td>{{ $row->nama }}</td>
+      <td>{{ $row->tgl_lahir }}</td>
+      <td>{{ $row->alamat }}</td>
+      <td>{{ $row->no_telp }}</td>
+      <td>{{ $row->asal_sekolah }}</td>
+      <td>{{ $row->nama_petugas }}</td>
+      <td>{{ $row->nama_angkutan }}</td>
+    </tr>                      
+ @endforeach    
 </table>
-
+</div>
 </body>
 </html>

@@ -25,7 +25,7 @@ Route::post('login',[UserController::class,'login']);
 
 Route::get('list-angkutan',[PendataanPenumpangController::class,'get_angkutan']);
 Route::get('list-penumpang',[PendataanPenumpangController::class,'list_penumpang']);
-Route::get('list-riwayat-penumpang',[PendataanPenumpangController::class,'riwayat_penumpang']);
+Route::get('list-riwayat-penumpang/{id}',[PendataanPenumpangController::class,'riwayat_penumpang']);
 Route::post('absen-penumpang',[PendataanPenumpangController::class,'absen_penumpang']);
 Route::post('daftar-penumpang',[PendataanPenumpangController::class,'filter_penumpang']);
 Route::post('scan-penumpang',[PendataanPenumpangController::class,'scan_qr_penumpang']);
@@ -38,4 +38,6 @@ Route::post('ubah-password',[UserController::class,'ubah_password']);
 Route::post('tracking',[TrackingController::class,'tracking']);
 
 Route::post('/tracking-web',[MonitoringController::class,'get_tracking']);
+
+Route::get('profil/{id}',[UserController::class,'getprofil']);
 

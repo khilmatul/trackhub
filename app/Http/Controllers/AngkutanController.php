@@ -45,8 +45,6 @@ class AngkutanController extends Controller
     {
         $trayek=DB::table('trayeks')->get();
         $user = User::where('profesi','supir')->get();
-
-    
         return view('dashboard.angkutan.create', compact ('trayek','user'));
     }
 
@@ -64,6 +62,7 @@ class AngkutanController extends Controller
             'sopir' => 'required',
             'trayek_id' => 'required',
         ]);
+
         $model = new Angkutan;
         $model->no_polisi = $request->no_polisi;
         $model->nama_angkutan = $request->nama_angkutan;
@@ -71,8 +70,6 @@ class AngkutanController extends Controller
         $model->trayek_id = $request->trayek_id;
         $model->tanggal = Carbon::parse(Carbon::now())->format('Y-m-d');
         $model->save();
-
-    
 
         return redirect('angkutan')->withToastSuccess('Data Berhasil Di Simpan');
     }
@@ -99,7 +96,6 @@ class AngkutanController extends Controller
         $trayek=DB::table('trayeks')->get();
         $user = User::where('profesi','supir')->get();
 
-        // $model = Angkutan::find($id);
         $model = DB::table('angkutans')->leftjoin('trayeks', 'angkutans.trayek_id', '=', 'trayeks.id')
         ->leftjoin('users', 'angkutans.user_id', '=', 'users.id')
         ->select('users.*','trayeks.*','angkutans.*')
@@ -122,12 +118,6 @@ class AngkutanController extends Controller
             'user_id' => $request->sopir,
             'trayek_id' => $request->trayek_id,
         ]);
-        // $model = Angkutan::find($id);
-        // // $model->no_polisi = $request->no_polisi;
-        // $model->nama_angkutan = $request->nama_angkutan;
-        // $model->user_id = $request->sopir;
-        // $model->trayek_id = $request->trayek_id;
-        // $model->save();
 
         return redirect('angkutan')->withToastSuccess('Data Berhasil Di Ubah');
     }
@@ -142,12 +132,12 @@ class AngkutanController extends Controller
     {
         $model = Angkutan::find($id);
         $model->delete();
-        // Alert::error();
         return redirect('angkutan')->withToastSuccess('Berhasil Menghapus Data');
     }
 
     public function eksportangkutan(){
-        $data = Angkutan::all();
+        $data = DB::table('angkutans')->leftJoin('trayeks','angkutans.trayek_id','trayeks.id')
+      ->leftJoin('users','angkutans.user_id','users.id')->get();
 
         view()->share('data', $data);
         $pdf = PDF::loadview('dashboard.angkutan.pdf');
