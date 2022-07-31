@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     {{-- CSS custom --}}
     <link rel="stylesheet" href="{{asset('css/index.css')}}">
+
 </head>
 <body>
     @include('partials.navbar') 
@@ -29,6 +30,7 @@
     <!-- Core plugin JavaScript-->
     <script src="{{asset('jquery-easing/jquery.easing.min.js')}}"></script>
     <script src="{{asset('sweetalert/sweetalert.all.js')}}"></script>
+    
     <script type="text/javascript" >
           $(document).ready(function() {
 
@@ -39,6 +41,7 @@
                 text: "{{session()->get('message')}}",
             })
             @endif
+            
 
 
             });

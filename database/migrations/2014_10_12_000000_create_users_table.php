@@ -33,7 +33,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('profesi');
             $table->string('alamat')->nullable();
-            $table->string('notelp',11)->nullable();
+            $table->string('notelp',12)->nullable();
             $table->string('api-token')->nullable();
             $table->rememberToken();
             $table->timestamps();

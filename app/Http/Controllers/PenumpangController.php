@@ -22,10 +22,16 @@ class PenumpangController extends Controller
     public function index(Request $request)
     {
         if($request->has('search')){
-            $data = Penumpang::where('nama','Like', '%' .$request->search .'%')->paginate(5);
+            $data = DB::table('penumpangs')
+            ->select('penumpangs.*')
+            ->orderBy('penumpangs.created_at','desc')
+            ->where('tgl_input_penumpang','Like', '%' .$request->search .'%')->paginate(5);
         }
         else{
-            $data = Penumpang::paginate(5);
+            $data = DB::table('penumpangs')
+            ->select('penumpangs.*')
+            ->orderBy('penumpangs.created_at','desc')
+            ->where('tgl_input_penumpang','Like', '%' .$request->search .'%')->paginate(5);
         }
         return view('dashboard.penumpang.penumpang', compact ('data'));
     }
@@ -37,18 +43,6 @@ class PenumpangController extends Controller
      */
     public function create()
     {
-        // $model = new Penumpang;
-        // $q = DB::table('penumpangs')->select(DB::raw('MAX(RIGHT(kode,4)) as kode'));
-        // $kd ="";
-        // if($q->count()>0){
-        //     foreach($q->get() as $k){
-        //         $tmp = ((int)$k->kode)+1;
-        //         $kd = sprintf("%04s", $tmp);
-        //     }
-        // }else{
-        //     $kd = "0001";
-        // }
-
         return view('dashboard.penumpang.create');
     }
 

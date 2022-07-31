@@ -14,7 +14,7 @@
       <div class="col-md-8">
         <div class="card justify-content-center">
           <div class="card-body" >
-              <form action="/trayek" method="POST">
+              <form action="{{url('trayek')}}" method="POST">
                   @csrf
                       <div class="mb-2">
                         <label class="form-label" for="nama_trayek">Nama Trayek</label>
@@ -49,9 +49,8 @@
                   </div>  
     
                   <div class="mb-2">
-                    <label class="form-label" for="via">Via</label>
-                    <input type="text" id="via" name="via" class="form-control @error('via')is-invalid @enderror"
-                    value="{{ old('via') }}" required/>
+                    <label class="form-label" >Via</label>
+                    <input type="text" id="via" name="via" class="form-control"/>
                     @error('via')
                       <div class="invalid-feedback">
                         {{ $message}}

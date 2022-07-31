@@ -33,52 +33,49 @@
             <h1 class="h3 mb-0 text-gray-700">Monitoring Trayek</h1>
         </div>
 
-
         <div class="container">
-            <div class="row form-group ">
+            <div class="row mb-3">
+                <div class="col-3">
+                    <div class="mb-2">
+                    <label class="form-label" for="supir">Supir</label>
+                        <select id="supir" name="supir" type="text" class="col-md-3 form-control">
+                            <option value selected disabled="">Pilih Supir</option>
+                            @foreach($supir as $v)
+                            <option value="{{ $v->id }}">{{ $v->nama}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <input type="button" id="drawPath" value="Refresh" class="btn btn-primary btn-sm" />
+                </div>       
 
-                <div class="col-md-2">
-
-                    <select id="supir" name="supir" type="text" class="col-md-3 form-control">
-                        <option value selected disabled="">Pilih Supir</option>
-                        @foreach($supir as $v)
-                        <option value="{{ $v->id }}">{{ $v->nama}}</option>
-                        @endforeach
-                    </select>
-
-
+                <div class="col-3">
+                    <div class="mb-2">
+                        <label class="form-label" for="kendaraan">Kendaraan</label>
+                        <input type="text" id="kendaraan"  class="form-control" readonly />
+                    </div>
                 </div>
-
-
-                <div class="col-md-3">
-                    <input type="button" id="drawPath" value="Refresh" class="btn-draw" />
-
+                
+                <div class="col-3">
+                    <div class="mb-2">
+                        <label class="form-label" for="latitude">Latitude</label>
+                        <input type="text" id="latitude"  class="form-control" readonly />
+                    </div>
                 </div>
+                
+                <div class="col-3">
+                    <div class="mb-2">
+                        <label class="form-label" for="longitude">Longitude</label>
+                        <input type="text" id="longitude"  class="form-control" readonly />
+                    </div>
+                </div>
+                
             </div>
-
-            <br>
-            <div class="row form-group ">
-
-                <div class="col-md-2">
-                    <input type="text"  value="Nama Angkutan :" class="form-control"  readonly/>
-
-                </div>
-                <div class="col-md-2">
-                    <input type="text" id="kendaraan"  class="form-control" readonly />
-
-                </div>
-            </div>
-
         </div>
-        <br>
-
+        
         <div class="container mx-auto">
             <div id="map-layer"></div>
-
         </div>
-
     </div>
-
 
     @endsection
     @section('js')
@@ -121,6 +118,8 @@
                         var data = res.data.tracking[0]
                         console.log(data)
                         document.getElementById("kendaraan").value = data.nama_angkutan
+                        document.getElementById("latitude").value = data.latitude_tracking_akhir
+                        document.getElementById("longitude").value = data.longitude_tracking_akhir
                         // console.log(data.latitude_tracking_akhir)
                         var start = `${data.latitude_tracking_awal},${data.longitude_tracking_awal}`
                         var end = `${data.latitude_tracking_akhir},${data.longitude_tracking_akhir}`
@@ -155,10 +154,9 @@
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCkdyai5-p_kXTroX-gSz_mz-xeQ8Ht1iY&callback=initMap">
+    
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATLas4hCAqv4Cyyt_CxYvzUS66vTOt6ds&callback=initMap">
     </script>
-    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyATLas4hCAqv4Cyyt_CxYvzUS66vTOt6ds&callback=initMap">
-    </script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.js" integrity="sha512-MNW6IbpNuZZ2VH9ngFhzh6cUt8L/0rSVa60F8L22K1H72ro4Ki3M/816eSDLnhICu7vwH/+/yb8oB3BtBLhMsA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     @endsection

@@ -108,17 +108,19 @@ class KelolaUserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate( [
+           
+            'nama' => 'required',
+            'profesi' => 'required',
+            'alamat' => 'required',
+            'nohp' => 'required|min:11|max:12',
+            'password' => 'required|min:8',
+        ]);
+    
         $user = User::find($id);
         if($request->password)
         {
-             $request->validate( [
            
-                'nama' => 'required',
-                'profesi' => 'required',
-                'alamat' => 'required',
-                'nohp' => 'required|min:11|max:12',
-            ]);
-        
             $user->update([
                 'nama' => $request->nama,
                 'profesi' => $request->profesi,

@@ -42,7 +42,12 @@
 
                             <div class="mb-2">
                                 <label class="form-label" for="password">Password</label>
-                                <input type="password" id="password" name="password" class="form-control" value=""  />
+                                <input type="password" id="password" name="password" class="form-control @error('password')is-invalid @enderror" value=""  />
+                                @error('password')
+                                        <div class="invalid-feedback">
+                                            {{ $message}}
+                                        </div>
+                                        @enderror
                                
 
                                 <div class="mb-2">

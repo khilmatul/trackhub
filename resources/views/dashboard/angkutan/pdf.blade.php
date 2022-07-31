@@ -46,7 +46,7 @@
             <td>{{ $no++ }}</td>
             <td>{{ $row->no_polisi }}</td>
             <td>{{ $row->nama_angkutan }}</td>
-            <td>{{ $row->sopir }}</td>
+            <td>{{ $row->nama }}</td>
             <td>{{ $row->trayek_id }}</td>
         </tr>                      
     @endforeach    

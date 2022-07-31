@@ -16,7 +16,6 @@
           <div class="card-body">
             <form action="{{url('kelolaakun')}}" method="POST">
               @csrf
-
               <div class="mb-2">
                 <label class="form-label" for="nama">Nama</label>
                 <input type="text" id="nama" name="nama" class="form-control @error('nama')is-invalid @enderror" value="" required />
@@ -28,7 +27,7 @@
               </div>
 
               <div class="mb-2">
-                <label class="form-label" for="username">username</label>
+                <label class="form-label" for="username">Username</label>
                 <input type="text" id="username" name="username" class="form-control @error('username')is-invalid @enderror" value="" required />
                 @error('username')
                 <div class="invalid-feedback">
@@ -36,9 +35,6 @@
                 </div>
                 @enderror
               </div>
-
-
-
 
               <div class="mb-2">
                 <label class="form-label" for="password">Password</label>
@@ -81,11 +77,6 @@
                       {{ $message}}
                     </div>
                     @enderror
-
-
-
-
-
                   </div>
                   <button class="btn btn-primary" type="submit">Simpan</button>
             </form>

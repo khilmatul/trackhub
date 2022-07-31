@@ -14,7 +14,7 @@
       <div class="col-md-8">
         <div class="card justify-content-center">
           <div class="card-body" >
-              <form action="/penumpang" method="POST">
+              <form action="{{url('penumpang')}}" method="POST">
                   @csrf
                 
                   <div class="row">                
@@ -66,9 +66,9 @@
                   </div>  
     
                   <div class="mb-2">
-                    <label class="form-label" for="asal_sekolah">Asal Sekolah</label>
+                    <label class="form-labels" >Asal Sekolah</label>
                     <input type="text" id="asal_sekolah" name="asal_sekolah" class="form-control"
-                     required/>
+                     >
                            
                   </div>  
     

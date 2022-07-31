@@ -23,13 +23,23 @@ class RekapitulasiController extends Controller
             // $data = Pendataan::where('nama_lengkap','Like', '%' .$request->search .'%')->paginate(5);
             $data = DB::table('pendataans')
             ->leftjoin('penumpangs', 'pendataans.penumpang_id', '=', 'penumpangs.id')
-            ->where('nama','Like', '%' .$request->search .'%')->paginate(5);
+            ->leftJoin('angkutans','pendataans.angkutan_id','angkutans.id')
+            ->leftJoin('users','angkutans.user_id','users.id')
+            ->leftJoin('users as petugas','pendataans.user_id','petugas.id')
+            ->select('users.nama as supir','petugas.nama as nama_petugas','penumpangs.*','angkutans.*','pendataans.*')
+            ->orderBy('pendataans.created_at','desc')
+            ->where('penumpangs.nama','Like', '%' .$request->search .'%')->paginate(5);
         }
         else{
             // $data = Pendataan::paginate(5);
             $data = DB::table('pendataans')
             ->leftjoin('penumpangs', 'pendataans.penumpang_id', '=', 'penumpangs.id')
-            ->where('nama','Like', '%' .$request->search .'%')->paginate(5);
+            ->leftJoin('angkutans','pendataans.angkutan_id','angkutans.id')
+            ->leftJoin('users','angkutans.user_id','users.id')
+            ->leftJoin('users as petugas','pendataans.user_id','petugas.id')
+            ->select('users.nama as supir','petugas.nama as nama_petugas','penumpangs.*','angkutans.*','pendataans.*')
+            ->orderBy('pendataans.created_at','desc')
+            ->where('penumpangs.nama','Like', '%' .$request->search .'%')->paginate(5);
         }
         // return $data;
         return view('dashboard.rekapitulasi.rekapitulasi',compact('data'));

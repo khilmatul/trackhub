@@ -25,55 +25,55 @@
             </div> 
 
             <div class="card-body">
-                <table class="table table-bordered table-striped table-hover">
-                    <thead >
-                        <tr>
-                          <th scope="col">No.</th>
-                          <th scope="col">Nomor Polisi</th>
-                          <th scope="col">Nama Angkutan</th>
-                          <th scope="col">Sopir</th>
-                          <th scope="col">Trayek</th>
-                          <th scope="col">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider">
-                        @foreach ($data as $index => $row)
-                        <tr>
-                          <td>{{ $index + $data->firstItem() }}</td>
-                          <td>{{ $row->no_polisi }}</td>
-                          <td>{{ $row->nama_angkutan }}</td>
-                          <td>{{ $row->nama }}</td>
-                          <td>{{ $row->nama_trayek}}</td>
-                          <td >
-                            <div class="row m-1">
-                              <div class="col-md-6">
-                                <a href="{{ url('angkutan/'.$row->id.'/edit') }}" class="btn btn-secondary btn-sm border-0"><i class="fa-solid fa-pen-to-square"></i></a>                                                     
-                              </div>
-                              <div class="col-md-6">
-                                <form action="{{ url('angkutan/'.$row->id) }}" method="post">
-                                  @csrf
-                                  <input type="hidden" name="_method" value="delete">
-                                  <button class="btn btn-danger btn-sm border-0 delete" data-id="{{ $row->id }}" data-name="{{ $row->nama_angkutan }}"><i class="fa-solid fa-trash-can"></i></button>
-                                </form> 
-                              </div>
-                            </div>
-                          </td>
-                        </tr>                      
-                      @endforeach 
-                    </tbody>
-                  </table>
-                  <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    {{ $data->links() }}
-                  </div>
-                  <div class="d-grid gap-2 d-md-flex justify-content-md-start text-gray-600 fs-6">
-                   <p>Menampilkan</p> 
-                    {{ $data->firstItem() }}
-                    <p>-</p> 
-                    {{ $data->lastItem() }}
-                    <p>dari</p>
-                    {{ $data->total() }}
-                    <p>data</p>
-                  </div>
+              <table class="table table-bordered table-striped table-hover">
+                <thead >
+                  <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Nomor Polisi</th>
+                    <th scope="col">Nama Angkutan</th>
+                    <th scope="col">Sopir</th>
+                    <th scope="col">Trayek</th>
+                    <th scope="col">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                  @foreach ($data as $index => $row)
+                  <tr>
+                    <td>{{ $index + $data->firstItem() }}</td>
+                    <td>{{ $row->no_polisi }}</td>
+                    <td>{{ $row->nama_angkutan }}</td>
+                    <td>{{ $row->nama }}</td>
+                    <td>{{ $row->nama_trayek}}</td>
+                    <td >
+                    <div class="row m-1">
+                      <div class="col-md-6">
+                        <a href="{{ url('angkutan/'.$row->id.'/edit') }}" class="btn btn-secondary btn-sm border-0"><i class="fa-solid fa-pen-to-square"></i></a>                                                     
+                      </div>
+                      <div class="col-md-6">
+                        <form action="{{ url('angkutan/'.$row->id) }}" method="post">
+                          @csrf
+                          <input type="hidden" name="_method" value="delete">
+                          <button class="btn btn-danger btn-sm border-0 delete" data-id="{{ $row->id }}" data-name="{{ $row->nama_angkutan }}"><i class="fa-solid fa-trash-can"></i></button>
+                        </form> 
+                      </div>
+                    </div>
+                    </td>
+                  </tr>                      
+                  @endforeach 
+                </tbody>
+                </table>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                  {{ $data->links() }}
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start text-gray-600 fs-6">
+                  <p>Menampilkan</p> 
+                  {{ $data->firstItem() }}
+                  <p>-</p> 
+                  {{ $data->lastItem() }}
+                  <p>dari</p>
+                  {{ $data->total() }}
+                  <p>data</p>
+                </div>
             </div>
         </div>
     </div>

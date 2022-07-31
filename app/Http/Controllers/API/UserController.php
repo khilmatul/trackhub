@@ -37,22 +37,7 @@ class UserController extends Controller
         // return $user;
         // return $angkutan->id;
         // $user->angkutan = $angkutan->id;
-        if($users->profesi=='supir'){
-
-            $user = DB::table('angkutans')
-            ->leftjoin('users', 'angkutans.user_id', 'users.id')
-            ->leftJoin('trayeks', 'angkutans.trayek_id', 'trayeks.id')
-            ->select( 'angkutans.id as angkutan_id','angkutans.*','trayeks.*','users.*')
-            ->where('users.id', $users->id)
-            ->first();
-
-        }else{
-            $user = DB::table('users')
-            ->select( 'users.*')
-            ->where('users.id', $users->id)
-            ->first();
-
-        }
+        
    
 
         if ($users) {
@@ -61,7 +46,24 @@ class UserController extends Controller
                 $users->update([
                     'api-token' => $random,
                 ]);
+
+                if($users->profesi=='supir'){
+
+                    $user = DB::table('angkutans')
+                    ->leftjoin('users', 'angkutans.user_id', 'users.id')
+                    ->leftJoin('trayeks', 'angkutans.trayek_id', 'trayeks.id')
+                    ->select( 'angkutans.id as angkutan_id','angkutans.*','trayeks.*','users.*')
+                    ->where('users.id', $users->id)
+                    ->first();
         
+                }else{
+                    $user = DB::table('users')
+                    ->select( 'users.*')
+                    ->where('users.id', $users->id)
+                    ->first();
+        
+                }
+                
                 return response()->json([
                     'pesan' => 'sukses',
                     'user' => $user
@@ -75,7 +77,7 @@ class UserController extends Controller
         }
 
         return response()->json([
-            'pesan' => 'gagal.username tidak terdaftar',
+            'pesan' => 'gagal. Username tidak terdaftar',
             'message' => "Nama Pengguna tidak terdaftar",
         ]);
     }
@@ -136,5 +138,40 @@ class UserController extends Controller
                 'pesan' => 'gagal update profil'
             ]);
         }
+    }
+    public function getprofil($id){
+
+        $users =  User::where('id', $id)->first();
+
+
+
+        if ($users) {
+         
+            if($users->profesi=='supir'){
+
+                $user = DB::table('angkutans')
+                ->leftjoin('users', 'angkutans.user_id', 'users.id')
+                ->leftJoin('trayeks', 'angkutans.trayek_id', 'trayeks.id')
+                ->select( 'angkutans.id as angkutan_id','angkutans.*','trayeks.*','users.*')
+                ->where('users.id', $users->id)
+                ->first();
+    
+            }else{
+                $user = DB::table('users')
+                ->select( 'users.*')
+                ->where('users.id', $users->id)
+                ->first();
+    
+            }
+            return response()->json([
+                'pesan' => 'sukses',
+                'user' => $user
+            ]);
+        } else {
+            return response()->json([
+                'pesan' => 'kosong'
+            ]);
+        }
+
     }
 }

@@ -19,9 +19,12 @@
                   <a class="nav-link {{ Request::is('register') ? 'active' : '' }}" href="/register">Daftar</a>
                 </li> -->
                 <li class="nav-item">
-                  <a class="nav-link {{ Request::is('login') ? 'active' : '' }}" href="{{url('login')}}">Masuk</a>
+                  <a class="nav-link {{ Request::is('register') ? 'active' : '' }}" href="{{url('register')}}">Daftar Kartu</a>
                 </li>              
               @endauth
+              <li class="nav-item">
+                  <a class="nav-link {{ Request::is('login') ? 'active' : '' }}" href="{{url('login')}}">Masuk</a>
+                </li>
           </ul>     
         </div>
     </div>

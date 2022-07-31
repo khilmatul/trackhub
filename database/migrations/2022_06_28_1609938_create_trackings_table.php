@@ -27,8 +27,6 @@ class CreateTrackingsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             
             $table->bigInteger('angkutan_id')->unsigned()->nullable();
-            // $table->foreign('angkutans_id')->references('id')->on('angkutans')->onDelete('cascade')->onUpdate('cascade');
-
             $table->timestamps();
         });
         //insert table trackings
@@ -57,9 +55,6 @@ class CreateTrackingsTable extends Migration
            
         ];
         DB::table('trackings')->insert($trackings);
-    
-
-        
 }
 
     /**

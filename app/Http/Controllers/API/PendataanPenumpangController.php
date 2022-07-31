@@ -19,7 +19,15 @@ class PendataanPenumpangController extends Controller
     {
         $angkutan = DB::table('angkutans')
             ->leftJoin('users', 'angkutans.user_id', 'users.id')
-            ->select('users.nama', 'users.id as id_user', 'angkutans.id as id_angkutan', 'angkutans.nama_angkutan')->get();
+            ->select('users.nama', 'users.id as id_user', 'angkutans.id as id_angkutan', 'angkutans.nama_angkutan',
+            'angkutans.no_polisi')
+            ->orderBy('nama_angkutan','asc')->orderBy('nama','asc')
+            ->get();
+
+            foreach ($angkutan as $key => $value) {
+                $angkutan[$key]->nama_angkutan = $value->nama_angkutan .' - '. $value->nama;
+
+            }
 
         if ($angkutan) {
             return response()->json([
@@ -54,15 +62,21 @@ class PendataanPenumpangController extends Controller
 
 
 
-    public function riwayat_penumpang()
+    public function riwayat_penumpang($id)
     {
         $pendataan = DB::table('pendataans')
             ->leftJoin('penumpangs', 'pendataans.penumpang_id', 'penumpangs.id')
             ->leftJoin('angkutans','pendataans.angkutan_id','angkutans.id')
-            ->leftJoin('users','angkutans.user_id', 'users.id')
-            ->select('penumpangs.*','angkutans.nama_angkutan', 'users.nama as nama_supir','pendataans.*')
+            ->leftJoin('users','pendataans.user_id', 'users.id')
+            ->leftJoin('users as supir','angkutans.user_id', 'supir.id')
+            ->select('penumpangs.*','angkutans.nama_angkutan', 'users.nama as nama_petugas','pendataans.*','supir.nama as nama_supir')
             ->orderBy('pendataans.id', 'DESC')
-            ->get();
+            ->where('users.id', $id)->get();
+
+            foreach ($pendataan as $key => $value) {
+                $pendataan[$key]->asal_sekolah = $value->asal_sekolah??'-';
+            }
+
         if ($pendataan) {
             return response()->json([
                 'pesan' => 'sukses',
@@ -88,6 +102,7 @@ class PendataanPenumpangController extends Controller
             $pendataan->waktu_pendataan = Carbon::now();
             $pendataan->penumpang_id = $p->id;
             $pendataan->angkutan_id = $request->angkutan_id;
+            $pendataan->user_id = $request->user_id;
             $pendataan->type_absen = 'Absen Penumpang';
             $pendataan->save();
 
@@ -112,6 +127,7 @@ class PendataanPenumpangController extends Controller
             $pendataan->waktu_pendataan = Carbon::now();
             $pendataan->penumpang_id = $p->id;
             $pendataan->angkutan_id = $request->angkutan_id;
+            $pendataan->user_id = $request->user_id;
             $pendataan->type_absen = 'Scan QR';
             $pendataan->save();
 

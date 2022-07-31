@@ -200,16 +200,6 @@ $data_angkutan_bulan=[
     $angkutan_jumlah_bulan_desember
         
 ];
-
-
-
-
-
-
-
-
-
-
     //===========Warna Random=================
     for ($i=0; $i<=count($label_bulan); $i++) {
         $colours[] = '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
@@ -221,18 +211,12 @@ $data_angkutan_bulan=[
     $hari_ini = Carbon::now()->format('d-m-Y');
     $tahun_ini = Carbon::now()->format('Y');
 
-
-
     $chart = new Penumpang();
     $chart->colours = $colours;
     $chart->bulan_ini = ($bulan_ini);
     $chart->tahun_ini = ($tahun_ini);
 
-
     $chart->labels_bulan = ($label_bulan);
-
-
-
 
     $chart->data_Penumpang_bulan = ($data_Penumpang_bulan);
     $chart->data_angkutan_bulan = ($data_angkutan_bulan);
@@ -247,8 +231,6 @@ $data_angkutan_bulan=[
         $supir = DB::table('trackings')->leftJoin('users', 'trackings.user_id', '=', 'users.id')->get();
 
         return view('dashboard.monitoring.tracking', compact('supir'));
-        
-    
     }
 
     public function get_tracking(Request $request){
@@ -271,12 +253,8 @@ $data_angkutan_bulan=[
                 'pesan'=>'gagal',
                 'tracking'=>[]
             ]);
-
-
         }
 
-        return $tracking;
-
-     
+        return $tracking;   
     }
 }

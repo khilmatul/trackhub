@@ -13,7 +13,7 @@
                 <th><b>Alamat</b></th>
                 <th><b>No. Telepon</b></th>
                 <th><b>Asal Sekolah</b></th>
-                <th><b>QR Code</b></th>
+                <th><b>Tanggal Daftar Penumpang</b></th>
                
 
   
@@ -30,7 +30,7 @@
                 <td>{{$data->alamat}}</td>
                 <td>{{$data->no_telp}}</td>
                 <td>{{$data->asal_sekolah}}</td>
-                <td>{{$data->qrcode}}</td>
+                <td>{{$data->tgl_input_penumpang}}</td>
                
               
             </tr>

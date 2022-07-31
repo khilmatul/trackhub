@@ -21,9 +21,10 @@
                     <thead >
                         <tr>
                           <th scope="col">No.</th>
-                          <th scope="col">Nama </th>
+                          <th scope="col">Username</th>
+                          <th scope="col">Nama</th>
                           <th scope="col">Profesi</th>
-                          <th scope="col">No_Telepon</th>
+                          <th scope="col">No Telepon</th>
                           <th scope="col">Alamat</th>
                           <th scope="col">Aksi</th>
                         </tr>
@@ -31,11 +32,12 @@
                     <tbody class="table-group-divider">
                         @foreach ($data as $index => $row)
                         <tr>
-                          <td>{{$loop->iteration}}</td>
-                          <td>{{ $row->nama}}</td>
-                          <td>{{ $row->profesi}}</td>
-                            <td>{{ $row->notelp}}</td>
-                            <td>{{ $row->alamat}}</td>
+                        <td>{{ $index + $data->firstItem() }}</td>
+                        <td>{{ $row->username}}</td>  
+                        <td>{{ $row->nama}}</td>
+                        <td>{{ $row->profesi}}</td>
+                        <td>{{ $row->notelp}}</td>
+                        <td>{{ $row->alamat}}</td>
                           <td >
                             <div class="row m-1">
                               <div class="col-md-6">
