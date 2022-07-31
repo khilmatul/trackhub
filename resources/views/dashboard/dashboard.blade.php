@@ -70,8 +70,13 @@
         <div class="row">
         <div class="card mb-3 col-md-12">
             <div class="card-header">
+<<<<<<< HEAD
                 <h5 class="card-title text-gray-900">
                   <i class="fas fa-chart-bar mr-1"></i>
+=======
+                <h5 class="card-title text-gray-700">
+                  <i class="fas fa-chart-bar mr-1 "></i>
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
                  Data Penumpang
                 </h5>
                 <div class="card-tools">
@@ -93,7 +98,11 @@
         <div class="row">
         <div class="card mb-3 col-md-12">
             <div class="card-header">
+<<<<<<< HEAD
                 <h5 class="card-title text-gray-900">
+=======
+                <h5 class="card-title text-gray-700">
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
                   <i class="fas fa-chart-bar mr-1"></i>
                  Data Angkutan
                 </h5>

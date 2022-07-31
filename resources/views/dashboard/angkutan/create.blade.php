@@ -15,6 +15,7 @@
         <div class="card justify-content-center">
           <div class="card-body" >
               <form action="{{url('angkutan')}}" method="POST">
+<<<<<<< HEAD
                 @csrf
                 <div class="mb-2">
                   <label class="form-label" for="no_polisi">No Polisi</label>
@@ -22,6 +23,18 @@
                   @error('no_polisi')
                   <div class="invalid-feedback">
                     {{ $message}}
+=======
+                  @csrf
+
+                  <div class="mb-2">
+                    <label class="form-label" for="no_polisi">No Polisi</label>
+                    <input type="text" id="no_polisi" name="no_polisi" class="form-control @error('no_polisi')is-invalid @enderror" value="{{ old('no_polisi') }}" required/>                        
+                    @error('no_polisi')
+                    <div class="invalid-feedback">
+                      {{ $message}}
+                    </div>
+                    @enderror
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
                   </div>
                   @enderror
                 </div>
@@ -51,6 +64,7 @@
                   @enderror
                 </div>
                   
+<<<<<<< HEAD
                 <div class="mb-2">
                   <label class="form-label" for="trayek_id">Trayek</label>
                   <select name="trayek_id" id="trayek_id" class="form-control @error('trayek_id')is-invalid @enderror" required>
@@ -67,6 +81,39 @@
                 </div>
                 <button class="btn btn-primary" type="submit">Simpan</button>
             </form>
+=======
+                  <div class="mb-2">
+                    <label class="form-label" for="sopir">Sopir</label>
+                    <select name="sopir" id="sopir" class="form-control @error('sopir')is-invalid @enderror" required>
+                      <option value selected disabled="">Pilih Sopir</option>
+                      @foreach ($user as $item)
+                        <option value ="{{ $item->id }}">{{ $item->nama }}</option>
+                      @endforeach
+                    </select>
+                    @error('sopir')
+                    <div class="invalid-feedback">
+                      {{ $message}}
+                    </div>
+                    @enderror
+                  </div>
+                 
+                  <div class="mb-2">
+                    <label class="form-label" for="trayek_id">Trayek</label>
+                    <select name="trayek_id" id="trayek_id" class="form-control @error('trayek_id')is-invalid @enderror" required>
+                      <option value selected disabled="">Pilih Trayek</option>
+                      @foreach ($trayek as $trayeks)
+                        <option value="{{ $trayeks->id }}">{{ $trayeks->nama_trayek }}</option>
+                      @endforeach
+                    </select>
+                    @error('trayek_id')
+                      <div class="invalid-feedback">
+                        {{ $message}}
+                      </div>
+                    @enderror
+                  </div>
+                  <button class="btn btn-primary" type="submit">Simpan</button>
+                </form>
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
           </div>
         </div>
       </div>

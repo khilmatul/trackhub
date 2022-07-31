@@ -7,16 +7,8 @@ use Illuminate\Http\Request;
 
 class KelolaUserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
-        //
-        // $user = User::all();
-        // return view('dashboard.kelolaakun.index',compact('user'));
         if($request->has('search')){
             $data = User::where('username','Like', '%' .$request->search .'%')->paginate(5);
         }
@@ -26,27 +18,13 @@ class KelolaUserController extends Controller
         return view('dashboard.kelolaakun.index', compact ('data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
         return view('dashboard.kelolaakun.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-      
-        //validate create user
         $validatedData=  $request->validate( [
             'username' => 'required|unique:users',
             'password' => 'required|min:8',
@@ -56,10 +34,7 @@ class KelolaUserController extends Controller
             'nohp' => 'required|min:12|max:13',
       
         ]);
-        // return $request;
 
-
-      
         $user = new User;
         $user->username = $request->username;
         $user->password = bcrypt($request->password);
@@ -69,28 +44,14 @@ class KelolaUserController extends Controller
         $user->notelp = $request->nohp;
         $user->save();
 
-
-        
         return redirect('kelolaakun')->withToastSuccess('Data Berhasil Di Simpan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //edit user
@@ -98,13 +59,6 @@ class KelolaUserController extends Controller
         return view('dashboard.kelolaakun.edit', compact('user'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
@@ -120,7 +74,17 @@ class KelolaUserController extends Controller
         $user = User::find($id);
         if($request->password)
         {
+<<<<<<< HEAD
            
+=======
+             $request->validate( [
+                'nama' => 'required',
+                'profesi' => 'required',
+                'alamat' => 'required',
+                'nohp' => 'required|min:11|max:12',
+            ]);
+        
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
             $user->update([
                 'nama' => $request->nama,
                 'profesi' => $request->profesi,
@@ -151,12 +115,6 @@ class KelolaUserController extends Controller
        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //destroy

@@ -8,11 +8,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTrackingsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('trackings', function (Blueprint $table) {
@@ -21,14 +16,13 @@ class CreateTrackingsTable extends Migration
             $table->string('latitude_tracking_awal')->nullable();
             $table->string('longitude_tracking_awal')->nullable();
             $table->string('latitude_tracking_akhir')->nullable();
-            $table->string('longitude_tracking_akhir')->nullable();
-            
+            $table->string('longitude_tracking_akhir')->nullable();           
             $table->bigInteger('user_id')->unsigned()->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');           
             $table->bigInteger('angkutan_id')->unsigned()->nullable();
             $table->timestamps();
         });
+
         //insert table trackings
         $trackings = [
             [
@@ -54,6 +48,7 @@ class CreateTrackingsTable extends Migration
             ],
            
         ];
+<<<<<<< HEAD
         DB::table('trackings')->insert($trackings);
 }
 
@@ -62,6 +57,11 @@ class CreateTrackingsTable extends Migration
      *
      * @return void
      */
+=======
+        DB::table('trackings')->insert($trackings);   
+    }
+
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
     public function down()
     {
         Schema::dropIfExists('trackings');

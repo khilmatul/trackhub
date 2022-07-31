@@ -57,7 +57,10 @@
               <th scope="col">Asal Sekolah (Pelajar)</th>
               <th scope="col">Sopir</th>
               <th scope="col">Angkutan</th>
+<<<<<<< HEAD
               <th scope="col">Petugas</th>
+=======
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
             </tr>
           </thead>
           <tbody class="table-group-divider">
@@ -71,9 +74,14 @@
               <td>{{ $row->alamat }}</td>
               <td>{{ $row->no_telp }}</td>
               <td>{{ $row->asal_sekolah }}</td>
+<<<<<<< HEAD
               <td>{{ $row->supir }}</td>
               <td>{{ $row->nama_angkutan }}</td>
               <td>{{ $row->nama_petugas }}</td>
+=======
+              <td>{{ $row->nama_petugas }}</td>
+              <td>{{ $row->nama_angkutan }}</td>
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
             </tr>
             @endforeach
           </tbody>

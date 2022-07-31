@@ -13,21 +13,6 @@ class LoginController extends Controller
     }
 
     public function authenticate(Request $request){
-    //    $credentials = $request-> validate([
-    //         'username' => 'required',
-    //         'password' => 'required'
-    //     ]);
-
-   
-        
-
-    //     if(Auth::attempt($credentials)){
-    //         if
-    //         $request->session()->regenerate();
-    //         return redirect()->intended('dashboard');
-    //     }
-
-    //     return back()->with('loginerror','login error');
     $input = $request->all();
 
     if (User::where('username', '=', $input['username'])->first() == true) {
@@ -37,7 +22,6 @@ class LoginController extends Controller
                     return redirect('/dashboard');
                     break;
                 default:
-                // return 'k';
                     return redirect()->back()->with('error', 'Anda Bukan Admin');
                     break;
             }

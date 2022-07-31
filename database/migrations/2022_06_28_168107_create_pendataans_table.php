@@ -7,11 +7,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePendataansTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('pendataans', function (Blueprint $table) {
@@ -21,6 +16,7 @@ class CreatePendataansTable extends Migration
             $table->bigInteger('angkutan_id')->unsigned()->nullable();
             $table->foreign('angkutan_id')->references('id')->on('angkutans')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('penumpang_id')->unsigned()->nullable();
+<<<<<<< HEAD
             $table->foreign('penumpang_id')->references('id')->on('penumpangs')->onDelete('cascade')->onUpdate('cascade');
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
@@ -28,32 +24,29 @@ class CreatePendataansTable extends Migration
             $table->timestamps();
 
           
+=======
+            $table->foreign('penumpang_id')->references('id')->on('penumpangs')->onDelete('cascade')->onUpdate('cascade');           
+            $table->timestamps();        
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
         });
 
-        // DB::table('pendataans')->insert([
-        //     'id'=>1,
-        //     'waktu_pendataan'=>'2022-09-01',
-        //     'angkutan_id'=>1,
-        //     'penumpang_id'=>1,
-        //     'type_absen'=>'Scan QR'
+        DB::table('pendataans')->insert([
+            'id'=>1,
+            'waktu_pendataan'=>'2022-09-01',
+            'angkutan_id'=>1,
+            'penumpang_id'=>1,
+            'type_absen'=>'Scan QR'
+        ]);
 
-        // ]);
-
-        // DB::table('pendataans')->insert([
-        //     'id'=>2,
-        //     'waktu_pendataan'=>'2022-12-21',
-        //     'angkutan_id'=>2,
-        //     'penumpang_id'=>2,
-        //     'type_absen'=>'Absen Penumpang'
-
-        // ]);
+        DB::table('pendataans')->insert([
+            'id'=>2,
+            'waktu_pendataan'=>'2022-12-21',
+            'angkutan_id'=>2,
+            'penumpang_id'=>2,
+            'type_absen'=>'Absen Penumpang'
+        ]);
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+    
     public function down()
     {
         Schema::dropIfExists('pendataans');

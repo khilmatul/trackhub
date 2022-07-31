@@ -16,11 +16,6 @@ class TrackingController extends Controller
     {
 
         $req = $request->all();
-
-        // $req['waktu_tracking'] = Carbon::now();
-
-
-
         $track = Tracking::updateOrCreate([
             //Add unique field combo to match here
             //For example, perhaps you only want one entry per user:
@@ -32,12 +27,9 @@ class TrackingController extends Controller
             'longitude_tracking_akhir'     => $request->longitude_tracking_akhir,
             'longitude_tracking_awal'     => $request->longitude_tracking_awal,
             'waktu_tracking' => Carbon::now()
-
-
         ]);
 
         if ($track) {
-            // $tracking =  Tracking::create($req);
             return response()->json([
 
                 'pesan' => 'sukses',
@@ -49,66 +41,10 @@ class TrackingController extends Controller
                 'data' => []
             ]);
         }
-
-
-        // $tracking = DB::table('trackings')
-        // ->leftJoin('angkutans','trackings.angkutan_id','angkutans.id')
-        // ->leftJoin('users','angkutans.user_id','users.id')
-        // ->select('users.*','trackings.*')
-        // ->where('trackings.user_id',$request->id)
-        // ->first();
-        // if($tracking->latitude_tracking=!null){
-
-        //     $tracking->update([
-        //         'latitude'=>$request->latitude,
-        //         'longitude'=>$request->longitude,
-        //         'waktu_tracking'=>Carbon::now(),
-        //     ]);
-
-        //     return response()->json([
-        //         'pesan' => 'sukses',
-        //         'track' => $tracking
-        //     ]);
-        // }else{
-        //     return response()->json([
-        //         'pesan' => 'gagal',
-        //         'track' => []
-        //     ]);
-        // }
-
-
-
     }
+
     public function stop_tracking(Request $request)
     {
-
-        // $req= $request->all();
-
-        // Tracking::create($req);
-        // $tracking = DB::table('trackings')
-        // ->leftJoin('angkutans','trackings.angkutan_id','angkutans.id')
-        // ->leftJoin('users','angkutans.user_id','users.id')
-        // ->select('users.*','trackings.*')
-        // ->where('trackings.user_id',$request->id)
-        // ->first();
-        // if($tracking->latitude_tracking=!null){
-
-        //     $tracking->update([
-        //         'latitude'=>$request->latitude,
-        //         'longitude'=>$request->longitude,
-        //         'waktu_tracking'=>Carbon::now(),
-        //     ]);
-
-        //     return response()->json([
-        //         'pesan' => 'sukses',
-        //         'track' => $tracking
-        //     ]);
-        // }else{
-        //     return response()->json([
-        //         'pesan' => 'gagal',
-        //         'track' => []
-        //     ]);
-        // }
 
     }
     
@@ -131,16 +67,12 @@ class TrackingController extends Controller
                 'pesan'=>'gagal',
                 'tracking'=>[]
             ]);
-
-
         }
 
         return $tracking;
-
-     
     }
+
     public function getsupir(){
-        // $supir=User::where('profesi','supir')->get();
         $supir=DB::table('angkutans')
         ->leftJoin('users','angkutans.user_id','users.id')
         ->select('angkutans.*','users.*')->get();

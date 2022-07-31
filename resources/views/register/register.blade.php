@@ -59,7 +59,11 @@
                     @enderror             
                   </div>  
                   <div class="mb-2">
+<<<<<<< HEAD
                     <label class="form-label">Asal Sekolah (Pelajar)</label>
+=======
+                    <label class="form-label" >Asal Sekolah</label>
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
                     <input type="text" id="asal_sekolah" name="asal_sekolah" class="form-control"
                      >
                            
@@ -71,7 +75,11 @@
                   <button class="btn" type="submit">Daftar</button>
                 </div>
               </form>
+<<<<<<< HEAD
               <small class="d-block text-center mt-3">Sudah Punya Kartu? <a href="/trackhubweb/public">Silahkan Cetak Kartu Penumpang Anda</a></small>
+=======
+              <small class="d-block text-center mt-3">Sudah Punya Kartu? <a href="/">Silahkan Cetak Kartu Penumpang Anda</a></small>
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
             </div>
           </div>
         </div>

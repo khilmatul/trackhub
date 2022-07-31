@@ -13,16 +13,18 @@ class UnduhKartuController extends Controller
    public function daftar_kartu_penumpang(Request $request){
 
     $validatedData = $request->validate([
-        // 'kode' => 'required|min:3',
         'nama_lengkap' => 'required|max:100',
         'tanggal_lahir' => 'required',
         'alamat' => 'required',
         'no_telepon' => 'required|min:11|max:12',
+<<<<<<< HEAD
         // 'asal_sekolah' => 'required|',
         // 'qr_code' => 'required|min:8|max:50'
+=======
+        'asal_sekolah' => 'required|',
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
     ]);
     $model = new Penumpang;
-    // $model->kode = $request->kode;
     $model->nama = $request->nama_lengkap;
     $model->tgl_lahir = $request->tanggal_lahir;
     $model->alamat = $request->alamat;
@@ -38,38 +40,18 @@ class UnduhKartuController extends Controller
     //
     public function cetak_kartu_pdf(Request $request){
 
-        //format date to dd-mm-yyyy
-        // $validatedData = $request->validate([
-        //     'tanggal_lahir' => 'required|date|before:tomorrow',
-
-        // ]);
         $tgl_lahir = $request->tgl_lahir;
         $data = Penumpang::where('nama',$request->nama)
         ->where('tgl_lahir', $tgl_lahir)->first();
 
         if($data){
-
-            $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($data->qrcode));
-
-        
+            $qrcode = base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate($data->qrcode));  
             $pdf = PDF::loadview('dashboard.cetakkartu.pdf', compact('qrcode','data'))->setPaper('A4','potrait');
-    
             return $pdf->download('kartu_penumpang_'.$request->nama.'_'.$tgl_lahir.'_'.'.pdf');
-
         }else{
             return redirect('/')->with('error','Data Penumpang Tidak Ditemukan');
-        }
-
-        // return $data;
-      
-        
-        // view()->share('data', $p);
-        // $pdf = PDF::loadview('dashboard.cetakkartu.pdf');
-        // return $pdf->download('karu_penumpang.pdf');
-
-       
+        } 
     }
-
 
     public function getRandomString($panjang = 10)
 	{

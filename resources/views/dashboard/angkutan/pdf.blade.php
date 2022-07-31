@@ -33,15 +33,16 @@
 <table id="penumpang">
   <tr>
     <th scope="col">No.</th>
-        <th scope="col">No Polisi</th>
-        <th scope="col">Nama Angkutan</th>
-        <th scope="col">Sopir</th>
-        <th scope="col">Trayek</th>
+    <th scope="col">No Polisi</th>
+    <th scope="col">Nama Angkutan</th>
+    <th scope="col">Sopir</th>
+    <th scope="col">Trayek</th>
   </tr>
   @php
       $no = 1;
   @endphp
   @foreach ($data as $row)
+<<<<<<< HEAD
         <tr>
             <td>{{ $no++ }}</td>
             <td>{{ $row->no_polisi }}</td>
@@ -49,6 +50,15 @@
             <td>{{ $row->nama }}</td>
             <td>{{ $row->trayek_id }}</td>
         </tr>                      
+=======
+  <tr>
+    <td>{{ $no++ }}</td>
+    <td>{{ $row->no_polisi }}</td>
+    <td>{{ $row->nama_angkutan }}</td>
+    <td>{{ $row->nama }}</td>
+    <td>{{ $row->trayek_id }}</td>
+  </tr>                      
+>>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
     @endforeach    
 </table>
 
