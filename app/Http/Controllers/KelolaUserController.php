@@ -74,9 +74,6 @@ class KelolaUserController extends Controller
         $user = User::find($id);
         if($request->password)
         {
-<<<<<<< HEAD
-           
-=======
              $request->validate( [
                 'nama' => 'required',
                 'profesi' => 'required',
@@ -84,7 +81,6 @@ class KelolaUserController extends Controller
                 'nohp' => 'required|min:11|max:12',
             ]);
         
->>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
             $user->update([
                 'nama' => $request->nama,
                 'profesi' => $request->profesi,

@@ -34,11 +34,7 @@ class PenumpangController extends Controller
 
     public function create()
     {
-<<<<<<< HEAD
-        return view('dashboard.penumpang.create');
-=======
        return view('dashboard.penumpang.create');
->>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
     }
 
     public function store(Request $request)

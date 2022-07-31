@@ -17,32 +17,18 @@ class RekapitulasiController extends Controller
         if($request->has('search')){
             $data = DB::table('pendataans')
             ->leftjoin('penumpangs', 'pendataans.penumpang_id', '=', 'penumpangs.id')
-<<<<<<< HEAD
-            ->leftJoin('angkutans','pendataans.angkutan_id','angkutans.id')
-            ->leftJoin('users','angkutans.user_id','users.id')
-            ->leftJoin('users as petugas','pendataans.user_id','petugas.id')
-            ->select('users.nama as supir','petugas.nama as nama_petugas','penumpangs.*','angkutans.*','pendataans.*')
-=======
             ->leftJoin('angkutans','pendataans.penumpang_id','angkutans.id')
             ->leftJoin('users','angkutans.user_id','users.id')
             ->select('users.nama as nama_petugas','penumpangs.*','angkutans.*','pendataans.*')
->>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
             ->orderBy('pendataans.created_at','desc')
             ->where('penumpangs.nama','Like', '%' .$request->search .'%')->paginate(5);
         }
         else{
             $data = DB::table('pendataans')
             ->leftjoin('penumpangs', 'pendataans.penumpang_id', '=', 'penumpangs.id')
-<<<<<<< HEAD
-            ->leftJoin('angkutans','pendataans.angkutan_id','angkutans.id')
-            ->leftJoin('users','angkutans.user_id','users.id')
-            ->leftJoin('users as petugas','pendataans.user_id','petugas.id')
-            ->select('users.nama as supir','petugas.nama as nama_petugas','penumpangs.*','angkutans.*','pendataans.*')
-=======
             ->leftJoin('angkutans','pendataans.penumpang_id','angkutans.id')
             ->leftJoin('users','angkutans.user_id','users.id')
             ->select('users.nama as nama_petugas','penumpangs.*','angkutans.*','pendataans.*')
->>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
             ->orderBy('pendataans.created_at','desc')
             ->where('penumpangs.nama','Like', '%' .$request->search .'%')->paginate(5);
         }

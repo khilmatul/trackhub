@@ -94,14 +94,7 @@ class AngkutanController extends Controller
     }
 
     public function eksportangkutan(){
-<<<<<<< HEAD
-        // $data = Angkutan::all();
-        $data = DB::table('angkutans')->leftJoin('trayeks','angkutans.trayek_id','trayeks.id')
-      ->leftJoin('users','angkutans.user_id','users.id')->get();
-
-=======
         $data = Angkutan::all();
->>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
         view()->share('data', $data);
         $pdf = PDF::loadview('dashboard.angkutan.pdf');
         return $pdf->download('angkutan.pdf');

@@ -48,20 +48,9 @@ class CreateTrackingsTable extends Migration
             ],
            
         ];
-<<<<<<< HEAD
-        DB::table('trackings')->insert($trackings);
-}
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-=======
         DB::table('trackings')->insert($trackings);   
     }
 
->>>>>>> b49556890d951d8e5eebe59dba7640efdc7d50f8
     public function down()
     {
         Schema::dropIfExists('trackings');
